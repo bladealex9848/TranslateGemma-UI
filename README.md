@@ -1,97 +1,132 @@
 # TranslateGemma UI
 
-Interfaz de usuario moderna para los modelos de traducción **TranslateGemma** de Google, ejecutados localmente con **Ollama**.
+<div align="center">
+  <img src="docs/marketing/linkedin_translategemma_launch_1768756822086.png" alt="TranslateGemma UI Banner" width="100%" />
 
-## ✨ Características
+  <br />
 
-- 🌍 **55 idiomas** soportados
-- 🖼️ **Traducción multimodal** (texto e imágenes)
-- 🔒 **Privacidad total** - ejecución 100% local
-- ⚡ **3 modelos** disponibles (4B, 12B, 27B)
-- 📱 **Diseño responsive** para desktop, tablet y móvil
+  <!-- Badges -->
+  <img src="https://img.shields.io/badge/Status-Beta-blue?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/badge/AI-Ollama-orange?style=for-the-badge" alt="Ollama" />
+  <img src="https://img.shields.io/badge/Privacy-100%25%20Local-red?style=for-the-badge" alt="Privacy First" />
+
+  <br />
+  <br />
+
+  <p align="center">
+    <strong>Interfaz moderna y privada para los modelos de traducción de Google DeepMind.</strong>
+    <br />
+    Sin internet. Sin fugas de datos. 55 idiomas.
+    <br />
+    <br />
+    <a href="#-inicio-rápido">Inicio Rápido</a> •
+    <a href="docs/translategemma/README.md">Documentación</a> •
+    <a href="#-galería">Galería Visual</a>
+  </p>
+</div>
+
+---
+
+## ⚡ ¿Qué es TranslateGemma UI?
+
+**TranslateGemma UI** es la interfaz visual definitiva para interactuar con la nueva familia de modelos **TranslateGemma** (construidos sobre Gemma 3). Diseñada para ofrecer una experiencia similar a las herramientas comerciales en la nube, pero ejecutándose **100% localmente** en tu hardware.
+
+Ideal para:
+*   🏢 **Empresas** que manejan documentación sensible.
+*   ✈️ **Viajeros** sin conexión a internet.
+*   💻 **Desarrolladores** que integran traducción en sus flujos locales.
+
+---
+
+## ✨ Características Principales
+
+| Característica | Descripción |
+| :--- | :--- |
+| 🌍 **55 Idiomas** | Soporte global impulsado por los modelos Gemma 3 de DeepMind. |
+| 🔒 **100% Privado** | Tus datos nunca salen de tu dispositivo. Inferencia local con Ollama. |
+| 🖼️ **Multimodal** | Arrastra y suelta imágenes para traducir texto dentro de ellas. |
+| ⚡ **Rendimiento Flexible** | Elige entre modelos 4B (rápido), 12B (balanceado) o 27B (preciso). |
+| 📱 **Diseño Adaptativo** | Experiencia fluida en Desktop, Tablet y Móvil. |
+
+---
+
+## 🎨 Galería
+
+### Dashboard Principal
+La potencia de la traducción profesional en un diseño minimalista.
+![Desktop Dashboard](docs/stitch_translategemma_ui/translategemma_main_dashboard/screen.png)
+
+### Experiencia Móvil
+Lleva 55 idiomas en tu bolsillo.
+<div align="center">
+  <img src="docs/stitch_translategemma_ui/mobile_translation_view/screen.png" width="30%" alt="Mobile View" />
+  <img src="docs/stitch_translategemma_ui/mobile_fullscreen_language_selector/screen.png" width="30%" alt="Language Selector" />
+  <img src="docs/stitch_translategemma_ui/mobile_hamburger_menu_expanded/screen.png" width="30%" alt="Menu Dark Mode" />
+</div>
+
+### Configuración de Modelos
+Gestiona tus modelos LLM locales fácilmente.
+![Settings](docs/stitch_translategemma_ui/settings_and_preferences/screen.png)
+
+---
 
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
 
-1. **Ollama** instalado y ejecutándose
-   ```bash
-   # macOS
-   brew install ollama
-   
-   # Linux
-   curl -fsSL https://ollama.com/install.sh | sh
-   ```
+1.  tener **[Ollama](https://ollama.com/)** instalado.
+2.  Tener al menos 8GB de RAM (para el modelo 4B/12B).
 
-2. **Modelo TranslateGemma** descargado
-   ```bash
-   ollama pull translategemma:12b
-   ```
+### Instalación
 
-### Configuración
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/bladealex9848/TranslateGemma-UI.git
+cd TranslateGemma-UI
 
-1. Clonar el repositorio
-   ```bash
-   git clone https://github.com/your-username/TranslateGemma-UI.git
-   cd TranslateGemma-UI
-   ```
+# 2. Descargar el modelo base (Ollama)
+ollama pull translategemma:12b
 
-2. Copiar archivo de entorno
-   ```bash
-   cp .env.example .env
-   ```
+# 3. Configurar entorno
+cp .env.example .env
 
-3. Configurar variables (editar `.env`)
-   ```env
-   OLLAMA_HOST=http://localhost:11434
-   OLLAMA_MODEL=translategemma:12b
-   ```
+# 4. Iniciar (Instrucción temporal hasta definir stack frontend)
+echo "El servidor de desarrollo iniciará pronto..."
+```
 
-## 📚 Documentación
+---
 
-| Documento | Descripción |
-|-----------|-------------|
-| [TranslateGemma](./docs/translategemma/README.md) | Documentación del modelo |
-| [Modelos](./docs/translategemma/MODELS.md) | Comparativa 4B/12B/27B |
-| [Guía de Prompts](./docs/translategemma/PROMPT_GUIDE.md) | Formato y ejemplos |
-| [Idiomas](./docs/translategemma/LANGUAGES.md) | 55 idiomas soportados |
+## 📚 Documentación Técnica
 
-### Prompts Especializados
+Todo lo que necesitas saber sobre los modelos y la integración:
 
-| Prompt | Para |
-|--------|------|
-| [UI/UX Designer](./docs/prompts/UI_UX_DESIGNER_PROMPT.md) | Diseño de interfaz |
-| [Arquitecto](./docs/prompts/ARCHITECTURE_PROMPT.md) | Arquitectura del sistema |
+*   📖 **[Guía de Modelos](./docs/translategemma/MODELS.md)**: Comparativa de rendimiento 4B vs 12B vs 27B.
+*   🗣️ **[Lista de Idiomas](./docs/translategemma/LANGUAGES.md)**: Todos los códigos ISO soportados.
+*   🤖 **[Guía de Prompts](./docs/translategemma/PROMPT_GUIDE.md)**: Cómo hablar con el modelo vía API.
+*   📱 **[Análisis de Diseño UI](./docs/UI_DESIGN_COMPLIANCE_ANALYSIS.md)**: Desglose completo de la interfaz.
 
-## 🛠️ Stack Tecnológico
+---
 
-- **Backend de IA**: Ollama + TranslateGemma
-- **Frontend**: (Por definir)
-- **API**: REST API de Ollama
+## 🛠️ Arquitectura
 
-## 📋 Modelos Disponibles
+El proyecto utiliza una arquitectura desacoplada para máxima flexibilidad:
 
-| Modelo | Tamaño | RAM | Caso de Uso |
-|--------|--------|-----|-------------|
-| `translategemma:4b` | 3.3GB | 6GB+ | Mobile/Edge |
-| `translategemma:12b` | 8.1GB | 12GB+ | Laptop |
-| `translategemma:27b` | 17GB | 32GB+ | Cloud/Server |
+*   **Core AI**: [Ollama](https://ollama.com/) (Inferencia local).
+*   **Modelos**: TranslateGemma (pesos abiertos por Google DeepMind).
+*   **Interfaz**: (Planificado: React/Next.js).
 
-## 🔧 Variables de Entorno
+---
 
-Ver [.env.example](.env.example) para todas las opciones.
+## 🤝 Contribuir
 
-| Variable | Descripción | Default |
-|----------|-------------|---------|
-| `OLLAMA_HOST` | URL del servidor Ollama | `http://localhost:11434` |
-| `OLLAMA_MODEL` | Modelo por defecto | `translategemma:12b` |
+¡Las contribuciones son bienvenidas! Especialmente en:
+*   Traducción de la interfaz.
+*   Optimización de prompts para casos de borde.
+*   Adaptadores para nuevos modelos.
 
-## 📄 Licencia
+---
 
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
-
-## 🔗 Referencias
-
-- [Ollama](https://ollama.com/)
-- [TranslateGemma en Ollama](https://ollama.com/library/translategemma)
-- [Technical Report (arXiv)](https://arxiv.org/abs/2601.09012)
+<div align="center">
+  <sub>Desarrollado con ❤️ para la comunidad Open Source.</sub>
+</div>
