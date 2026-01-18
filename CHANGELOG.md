@@ -23,6 +23,13 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
   - .gitignore
   - .env y .env.example
   - requirements.txt
+- Arquitectura e Integraciones
+  - Documentación de integración con PocketBase
+  - Decisión arquitectónica: FastAPI vs Integración Directa
+  - Análisis de rendimiento de servidor Ollama
+- Planificación de Implementación
+  - Roadmap detallado con 6 fases
+  - Stack tecnológico: Next.js 16 + React 19 + PocketBase
 
 ## [0.1.0] - 2026-01-18
 
