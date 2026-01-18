@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TranslateGemma Mobile</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "primary-dark": "#005a85",
+                        "background-light": "#ffffff",
+                        "background-dark": "#17293f",
+                        "surface-light": "#f8fbfc",
+                        "surface-dark": "#1e3652",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 20px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 flex justify-center items-center min-h-screen font-display p-0 sm:p-4">
+<!-- Mobile Device Simulator / Main Wrapper -->
+<div class="w-full max-w-[480px] h-[100dvh] sm:h-[850px] bg-background-light dark:bg-background-dark sm:rounded-2xl sm:shadow-2xl overflow-hidden flex flex-col relative ring-1 ring-black/5">
+<!-- Header -->
+<header class="px-6 pt-6 pb-2 flex justify-between items-center z-10 shrink-0">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">translate</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">TranslateGemma</h1>
+</div>
+<div class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/30 px-2.5 py-1 rounded-full border border-emerald-100 dark:border-emerald-800">
+<div class="size-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Connected</span>
+</div>
+</header>
+<!-- Mode Switcher -->
+<div class="px-6 py-2 shrink-0">
+<div class="flex h-10 w-full items-center justify-center rounded-lg bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-[4px] has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-slate-400 text-sm font-semibold transition-all">
+<span class="truncate flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">text_fields</span>
+                        Text
+                    </span>
+<input checked="" class="invisible w-0 absolute" name="mode" type="radio" value="Text"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-[4px] has-[:checked]:bg-white dark:has-[:checked]:bg-slate-700 has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-slate-400 text-sm font-semibold transition-all">
+<span class="truncate flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+                        Camera
+                    </span>
+<input class="invisible w-0 absolute" name="mode" type="radio" value="Camera"/>
+</label>
+</div>
+</div>
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-y-auto px-4 py-2 pb-40 space-y-0 relative">
+<!-- Source Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative z-10 flex flex-col min-h-[180px]">
+<!-- Language Select Header -->
+<div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<button class="flex items-center gap-1 text-primary hover:bg-primary/5 px-2 py-1 rounded-md transition-colors">
+<span class="font-semibold text-sm">English (US)</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button aria-label="Clear text" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Input Area -->
+<div class="flex-1 relative">
+<textarea class="w-full h-full bg-transparent border-0 focus:ring-0 resize-none p-4 text-lg text-slate-800 dark:text-slate-100 placeholder:text-slate-400 font-normal leading-relaxed min-h-[140px]" placeholder="Enter text to translate..."></textarea>
+<!-- Paste Button (Bottom Left of Area) -->
+<div class="absolute bottom-3 left-3">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-sm">content_paste</span>
+                            Paste
+                        </button>
+</div>
+</div>
+</div>
+<!-- Swap Button (Floats between cards) -->
+<div class="relative h-6 z-20 flex justify-center items-center">
+<div class="absolute -top-5">
+<button class="size-10 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 shadow-md text-primary flex items-center justify-center hover:scale-105 active:scale-95 transition-transform cursor-pointer group">
+<span class="material-symbols-outlined group-hover:rotate-180 transition-transform duration-300">swap_vert</span>
+</button>
+</div>
+</div>
+<!-- Destination Card -->
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700/50 relative z-0 flex flex-col min-h-[180px]">
+<!-- Language Select Header -->
+<div class="px-4 py-3 border-b border-slate-200/50 dark:border-slate-700/50 flex justify-between items-center">
+<button class="flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700 px-2 py-1 rounded-md transition-colors">
+<span class="font-semibold text-sm">Spanish (Mexico)</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<!-- Output Area -->
+<div class="flex-1 p-4">
+<p class="text-lg text-slate-400 dark:text-slate-500 font-normal italic leading-relaxed">Translation appears here...</p>
+</div>
+<!-- Action Row -->
+<div class="px-4 py-3 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-end gap-2">
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Listen">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Copy">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Share">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Quick Suggestion Chips (Optional context-aware feature) -->
+<div class="mt-4 flex gap-2 overflow-x-auto pb-2 no-scrollbar px-1">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-600 dark:text-slate-400 hover:border-primary/50 transition-colors">Translate for Travel</button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-600 dark:text-slate-400 hover:border-primary/50 transition-colors">Formal Tone</button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-600 dark:text-slate-400 hover:border-primary/50 transition-colors">Summarize</button>
+</div>
+</main>
+<!-- Sticky Bottom Area -->
+<div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-background-dark/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 flex flex-col">
+<!-- Primary Action Bar -->
+<div class="px-6 pt-4 pb-2">
+<button class="group relative w-full h-14 bg-primary hover:bg-primary-dark active:scale-[0.99] rounded-xl shadow-[0_4px_10px_rgba(0,125,184,0.4)] text-white font-bold text-lg tracking-wide flex items-center justify-center gap-3 transition-all">
+<span class="material-symbols-outlined">auto_awesome</span>
+                    Translate
+                    <!-- Loading Spinner (Hidden by default) -->
+<!-- <div class="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> -->
+</button>
+</div>
+<!-- Bottom Navigation -->
+<nav class="flex justify-around items-center pt-2 pb-5 sm:pb-3 px-2">
+<button class="flex-1 flex flex-col items-center gap-1 p-2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[24px]">history</span>
+<span class="text-[10px] font-medium">History</span>
+</button>
+<button class="flex-1 flex flex-col items-center gap-1 p-2 text-primary font-semibold">
+<span class="material-symbols-outlined icon-filled text-[24px]">translate</span>
+<span class="text-[10px] font-medium">Translate</span>
+</button>
+<button class="flex-1 flex flex-col items-center gap-1 p-2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</nav>
+</div>
+</div>
+</body></html>

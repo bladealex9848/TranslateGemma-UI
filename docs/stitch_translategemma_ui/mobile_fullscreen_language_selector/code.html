@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TranslateGemma - Language Selector</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "background-light": "#ffffff",
+                        "background-dark": "#22262a",
+                        "surface-light": "#f8f9fa",
+                        "surface-dark": "#2c3035",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-gray-100/50 flex items-center justify-center min-h-screen p-4 font-display backdrop-blur-sm" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px;">
+<!-- Mobile Simulator Container -->
+<!-- Concept: A floating modal that mimics a mobile viewport on desktop -->
+<div class="relative flex flex-col w-full max-w-[420px] h-[85vh] max-h-[840px] bg-background-light dark:bg-background-dark rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700 ring-1 ring-black/5">
+<!-- Sticky Header Zone -->
+<header class="shrink-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+<!-- Top Bar -->
+<div class="flex items-center justify-between px-6 pt-5 pb-2">
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Select Language</h2>
+<button class="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 hover:bg-slate-100 hover:text-primary dark:text-slate-400 dark:hover:bg-slate-800 transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="px-5 pb-4 pt-2">
+<div class="group relative flex w-full items-center">
+<span class="material-symbols-outlined absolute left-4 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-12 rounded-xl bg-surface-light dark:bg-surface-dark border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-black/20 focus:ring-4 focus:ring-primary/10 pl-11 pr-4 text-base text-slate-900 dark:text-white placeholder-slate-400 transition-all duration-300 ease-out shadow-sm" placeholder="Search languages..." type="text" value=""/>
+</div>
+</div>
+</header>
+<!-- Scrollable List Area -->
+<div class="flex-1 overflow-y-auto overscroll-contain pb-8 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-gray-700">
+<!-- Section: Recent -->
+<div class="pt-4">
+<div class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 py-2 mb-1">
+<h3 class="text-xs font-bold uppercase tracking-widest text-primary/80">Recent</h3>
+</div>
+<div class="px-3 space-y-1">
+<!-- Spanish -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<!-- Avatar Placeholder: Using gradient for abstract representation instead of flags for a cleaner look -->
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-orange-100 to-yellow-100 text-orange-600 font-bold text-lg dark:from-orange-900/30 dark:to-yellow-900/30 dark:text-orange-400 shadow-inner" data-alt="Abstract gradient circle representing Spanish">
+                                Es
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Spanish</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Español</span>
+</div>
+</div>
+<input class="w-5 h-5 border-gray-300 text-primary focus:ring-primary/50 dark:border-gray-600 dark:bg-gray-800" name="language" type="radio"/>
+</label>
+<!-- French -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600 font-bold text-lg dark:from-blue-900/30 dark:to-indigo-900/30 dark:text-blue-400 shadow-inner" data-alt="Abstract gradient circle representing French">
+                                Fr
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">French</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Français</span>
+</div>
+</div>
+<input class="w-5 h-5 border-gray-300 text-primary focus:ring-primary/50 dark:border-gray-600 dark:bg-gray-800" name="language" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Section: All Languages -->
+<div class="pt-6">
+<div class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 py-2 mb-1">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">All Languages</h3>
+</div>
+<div class="px-3 space-y-1">
+<!-- English (Selected) -->
+<label class="group flex items-center justify-between p-3 rounded-xl bg-primary/5 dark:bg-primary/10 border border-primary/10 cursor-pointer transition-all duration-200">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white font-bold text-lg shadow-md shadow-primary/20" data-alt="Solid primary color circle representing English">
+                                En
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-bold text-slate-900 dark:text-white">English</span>
+<span class="text-sm text-slate-600 dark:text-slate-300">English</span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+</label>
+<!-- German -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<!-- Minimalist text-only fallback style for the rest -->
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing German">
+                                De
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">German</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Deutsch</span>
+</div>
+</div>
+<!-- Using a subtle chevron for unselected items to encourage interaction -->
+<div class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-300">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</label>
+<!-- Italian -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing Italian">
+                                It
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Italian</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Italiano</span>
+</div>
+</div>
+</label>
+<!-- Japanese -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing Japanese">
+                                Ja
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Japanese</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">日本語</span>
+</div>
+</div>
+</label>
+<!-- Korean -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing Korean">
+                                Ko
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Korean</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">한국어</span>
+</div>
+</div>
+</label>
+<!-- Portuguese -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing Portuguese">
+                                Pt
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Portuguese</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Português</span>
+</div>
+</div>
+</label>
+<!-- Russian -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing Russian">
+                                Ru
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Russian</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">Русский</span>
+</div>
+</div>
+</label>
+<!-- Chinese -->
+<label class="group flex items-center justify-between p-3 rounded-xl hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer transition-all duration-200 active:scale-[0.99]">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-100 text-slate-600 font-bold text-lg dark:bg-slate-800 dark:text-slate-400" data-alt="Gray circle representing Chinese">
+                                Zh
+                            </div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Chinese (Simplified)</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">中文 (简体)</span>
+</div>
+</div>
+</label>
+</div>
+<!-- Spacer for scrolling comfort -->
+<div class="h-8"></div>
+</div>
+</div>
+<!-- Fade Overlay at bottom -->
+<div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-[#22262a] to-transparent pointer-events-none z-20"></div>
+</div>
+</body></html>

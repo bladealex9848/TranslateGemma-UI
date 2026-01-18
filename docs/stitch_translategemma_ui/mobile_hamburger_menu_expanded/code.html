@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TranslateGemma - Mobile Menu</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#0e131b",
+                        "surface-dark": "#16202a",
+                        "surface-highlight": "#1e2b38",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Hide scrollbar for clean mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 flex items-center justify-center min-h-screen p-4 font-display">
+<!-- Mobile Device Simulator Frame -->
+<div class="relative w-full max-w-[390px] h-[844px] bg-background-dark rounded-[40px] shadow-2xl overflow-hidden border-[8px] border-slate-800 ring-1 ring-slate-900/50">
+<!-- Background App Content (Blurred/Dimmed State) -->
+<div class="absolute inset-0 bg-[#0e131b] flex flex-col pointer-events-none opacity-40 transform scale-95 origin-right transition-all">
+<!-- Simulated Header -->
+<div class="h-16 flex items-center justify-between px-4 border-b border-surface-highlight">
+<span class="material-symbols-outlined text-white">menu</span>
+<span class="text-white font-bold text-lg">TranslateGemma</span>
+<div class="w-8 h-8 rounded-full bg-primary/20"></div>
+</div>
+<!-- Simulated Content -->
+<div class="p-4 space-y-4">
+<div class="h-32 bg-surface-highlight rounded-xl"></div>
+<div class="h-12 bg-surface-highlight rounded-lg w-2/3"></div>
+<div class="h-12 bg-surface-highlight rounded-lg w-1/2"></div>
+<div class="h-64 bg-surface-highlight rounded-xl mt-8"></div>
+</div>
+</div>
+<!-- Backdrop Overlay -->
+<div class="absolute inset-0 bg-black/60 z-10 backdrop-blur-sm transition-opacity duration-300"></div>
+<!-- Side Navigation Drawer -->
+<div class="absolute top-0 left-0 bottom-0 w-[85%] bg-[#0e131b] z-20 flex flex-col shadow-2xl border-r border-white/5">
+<!-- 1. Profile Header Section -->
+<div class="p-6 pb-4 border-b border-white/5">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14 ring-2 ring-primary/30" data-alt="Abstract geometric avatar gradient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9Lf10Ppv7d1on126tFDgMWe5s_iUwZ5Fcw31-MD6afzIBAlg47GlIYMStpdOPDtED02UY9UqxzbI2PBdH1WcfPiE1M5PF4HIRyhCUR11uuf3p4F8C0uOe4u6MizFuPg3VqP8GjcGf7fqdOvWeWUGkqt26R8-6xTK7W5wkjebDyAvZwL-a5SlQz8N_D7H51Ylyhq3DvYQLY5nVtWKgYcFpiY2Vb78UQAKuuf1O1Cljp5O0-9w598VIOBtq25ILIzXfQAUxODNo5ws");'>
+</div>
+<div class="absolute bottom-0 right-0 h-3.5 w-3.5 bg-green-500 border-2 border-[#0e131b] rounded-full"></div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-lg font-bold leading-tight tracking-tight">Alex Developer</p>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="text-xs font-semibold bg-primary/20 text-primary px-1.5 py-0.5 rounded">PRO</span>
+<p class="text-slate-400 text-sm font-medium">Plan Active</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Main Navigation List -->
+<div class="flex-1 overflow-y-auto no-scrollbar py-2">
+<!-- Primary Actions -->
+<div class="px-3 py-2 space-y-1">
+<button class="flex w-full items-center gap-4 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors group">
+<div class="text-slate-400 group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">history</span>
+</div>
+<p class="text-slate-300 group-hover:text-white text-base font-medium flex-1 text-left">Translation History</p>
+</button>
+<button class="flex w-full items-center gap-4 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors group">
+<div class="text-slate-400 group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">bookmarks</span>
+</div>
+<p class="text-slate-300 group-hover:text-white text-base font-medium flex-1 text-left">Saved Phrases</p>
+<div class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">12</div>
+</button>
+</div>
+<div class="h-px bg-white/5 my-2 mx-6"></div>
+<!-- Model Management Section -->
+<div class="px-6 pt-4 pb-2">
+<h3 class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-3">Model Management</h3>
+<div class="flex flex-col gap-2">
+<!-- 4B Model (Fastest) -->
+<label class="relative flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 cursor-pointer hover:bg-white/[0.04] transition-all has-[:checked]:border-primary/50 has-[:checked]:bg-primary/5">
+<input class="peer sr-only" name="model_selection" type="radio"/>
+<div class="h-4 w-4 rounded-full border border-slate-500 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all">
+<div class="h-1.5 w-1.5 bg-white rounded-full opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-200 text-sm font-semibold leading-tight peer-checked:text-primary">Gemma 4B</span>
+<span class="text-slate-500 text-xs peer-checked:text-primary/70">Lightning Fast • Low Memory</span>
+</div>
+<span class="material-symbols-outlined absolute right-3 text-slate-600 peer-checked:text-primary text-[20px]">bolt</span>
+</label>
+<!-- 12B Model (Balanced - Active) -->
+<label class="relative flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 cursor-pointer hover:bg-white/[0.04] transition-all has-[:checked]:border-primary/50 has-[:checked]:bg-primary/5">
+<input checked="" class="peer sr-only" name="model_selection" type="radio"/>
+<div class="h-4 w-4 rounded-full border border-slate-500 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all">
+<div class="h-1.5 w-1.5 bg-white rounded-full opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-200 text-sm font-semibold leading-tight peer-checked:text-primary">Gemma 12B</span>
+<span class="text-slate-500 text-xs peer-checked:text-primary/70">Balanced Performance</span>
+</div>
+<span class="material-symbols-outlined absolute right-3 text-slate-600 peer-checked:text-primary text-[20px]">balance</span>
+</label>
+<!-- 27B Model (High Quality) -->
+<label class="relative flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 cursor-pointer hover:bg-white/[0.04] transition-all has-[:checked]:border-primary/50 has-[:checked]:bg-primary/5">
+<input class="peer sr-only" name="model_selection" type="radio"/>
+<div class="h-4 w-4 rounded-full border border-slate-500 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-all">
+<div class="h-1.5 w-1.5 bg-white rounded-full opacity-0 peer-checked:opacity-100"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-200 text-sm font-semibold leading-tight peer-checked:text-primary">Gemma 27B</span>
+<span class="text-slate-500 text-xs peer-checked:text-primary/70">Highest Precision • Slow</span>
+</div>
+<span class="material-symbols-outlined absolute right-3 text-slate-600 peer-checked:text-primary text-[20px]">psychology</span>
+</label>
+</div>
+</div>
+<div class="h-px bg-white/5 my-2 mx-6"></div>
+<!-- Settings & Toggles -->
+<div class="px-3 py-2 space-y-1">
+<button class="flex w-full items-center gap-4 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors group">
+<div class="text-slate-400 group-hover:text-white transition-colors flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+</div>
+<p class="text-slate-300 group-hover:text-white text-base font-medium flex-1 text-left">App Settings</p>
+</button>
+<!-- Dark Mode Toggle -->
+<div class="flex w-full items-center justify-between gap-4 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="text-slate-400 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">dark_mode</span>
+</div>
+<p class="text-slate-300 text-base font-medium">Dark Mode</p>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- 3. Server Status Footer -->
+<div class="p-4 bg-surface-dark border-t border-white/5">
+<div class="bg-black/20 rounded-lg p-3 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+</span>
+<div class="flex flex-col">
+<span class="text-white text-xs font-bold tracking-wide">LOCAL SERVER</span>
+<span class="text-green-500 text-[10px] font-medium uppercase tracking-wider">Connected • v1.0.4</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-green-500 text-[18px]">wifi</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

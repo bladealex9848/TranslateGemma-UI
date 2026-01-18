@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TranslateGemma Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "primary-dark": "#006291",
+                        "background-light": "#f8fbfc",
+                        "background-dark": "#17293f",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e3650",
+                        "border-light": "#e6f0f4",
+                        "border-dark": "#2a425e",
+                        "text-main": "#0c171d",
+                        "text-sub": "#4584a1",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'inner-glow': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.02)'
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="h-16 flex items-center justify-between px-6 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark z-20 shrink-0">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">translate</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-text-main dark:text-white">TranslateGemma</h1>
+</div>
+<!-- Central Control: Model & Status -->
+<div class="hidden md:flex items-center gap-4 bg-background-light dark:bg-background-dark py-1.5 px-2 rounded-full border border-border-light dark:border-border-dark">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-surface-dark shadow-sm border border-border-light dark:border-border-dark cursor-pointer hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">psychology</span>
+<span class="text-sm font-medium text-text-main dark:text-gray-200">Gemma 7B (Q4_K_M)</span>
+<span class="material-symbols-outlined text-text-sub text-[16px]">expand_more</span>
+</div>
+<div class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+<div class="flex items-center gap-2 px-2">
+<div class="size-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-semibold text-text-sub dark:text-gray-400 uppercase tracking-wide">Ollama Local</span>
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-3">
+<button class="p-2 text-text-sub hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-cover bg-center ring-2 ring-white dark:ring-gray-700 shadow-sm" data-alt="User profile avatar showing a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdKWslODWBdqMQsI44Z0nRi2NKlxzzxFmh19APJOngRefonbxVOLkRo-yF7kPI5KZ4zZtzt2RHw-LwfrIWyxgLRDLlmxECM7-8eHJ66kxGO8por7yVib7D-HV4N5MQ7q3ssrFRp4VO20jUYanfO5AfQ6sTO6cyVWfQjb0qXSblxwAs1JO8BrgjPUSlIZxuxfr9xFoD89I5aem0o5kC17i_KPIZtGOgu6dYBgZ5AJ76dpN3napbz92HrDierUr7f8mlX6EOclndX0w');"></div>
+</div>
+</header>
+<!-- Main Workspace -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-72 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark flex flex-col shrink-0 hidden lg:flex">
+<!-- Sidebar Header Tabs -->
+<div class="p-4 border-b border-border-light dark:border-border-dark">
+<div class="flex bg-background-light dark:bg-background-dark p-1 rounded-lg">
+<button class="flex-1 py-1.5 text-sm font-medium text-text-main dark:text-white bg-white dark:bg-surface-light shadow-sm rounded-md text-center">History</button>
+<button class="flex-1 py-1.5 text-sm font-medium text-text-sub dark:text-gray-400 hover:text-text-main transition-colors text-center">Favorites</button>
+</div>
+</div>
+<!-- List Items -->
+<div class="flex-1 overflow-y-auto p-3 space-y-1">
+<div class="px-3 py-2 text-xs font-semibold text-text-sub uppercase tracking-wider mt-2 mb-1">Today</div>
+<!-- History Item 1 -->
+<button class="w-full flex flex-col gap-1 p-3 rounded-lg hover:bg-background-light dark:hover:bg-background-dark group transition-all text-left border border-transparent hover:border-border-light dark:hover:border-border-dark">
+<div class="flex items-center justify-between w-full">
+<span class="text-sm font-medium text-text-main dark:text-gray-200 truncate">Quarterly Report Q3</span>
+<span class="text-xs text-text-sub">2m</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-text-sub bg-primary/10 text-primary px-1.5 py-0.5 rounded">EN→FR</span>
+<span class="text-xs text-text-sub truncate">Financial summary...</span>
+</div>
+</button>
+<!-- History Item 2 -->
+<button class="w-full flex flex-col gap-1 p-3 rounded-lg hover:bg-background-light dark:hover:bg-background-dark group transition-all text-left border border-transparent hover:border-border-light dark:hover:border-border-dark">
+<div class="flex items-center justify-between w-full">
+<span class="text-sm font-medium text-text-main dark:text-gray-200 truncate">Customer Support Email</span>
+<span class="text-xs text-text-sub">2h</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-text-sub bg-primary/10 text-primary px-1.5 py-0.5 rounded">EN→ES</span>
+<span class="text-xs text-text-sub truncate">Thank you for reach...</span>
+</div>
+</button>
+<div class="px-3 py-2 text-xs font-semibold text-text-sub uppercase tracking-wider mt-4 mb-1">Yesterday</div>
+<!-- History Item 3 -->
+<button class="w-full flex flex-col gap-1 p-3 rounded-lg hover:bg-background-light dark:hover:bg-background-dark group transition-all text-left border border-transparent hover:border-border-light dark:hover:border-border-dark">
+<div class="flex items-center justify-between w-full">
+<span class="text-sm font-medium text-text-main dark:text-gray-200 truncate">Product Spec V2</span>
+<span class="text-xs text-text-sub">1d</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-text-sub bg-primary/10 text-primary px-1.5 py-0.5 rounded">EN→DE</span>
+<span class="text-xs text-text-sub truncate">Technical requirements...</span>
+</div>
+</button>
+</div>
+<!-- Sidebar Footer -->
+<div class="p-4 border-t border-border-light dark:border-border-dark">
+<button class="flex items-center gap-3 w-full p-2 rounded-lg text-text-sub hover:bg-background-light dark:hover:bg-background-dark hover:text-primary transition-colors">
+<span class="material-symbols-outlined">delete_sweep</span>
+<span class="text-sm font-medium">Clear History</span>
+</button>
+</div>
+</aside>
+<!-- Editor Area -->
+<main class="flex-1 flex flex-col h-full bg-background-light dark:bg-background-dark relative">
+<!-- Language Controls -->
+<div class="flex items-center justify-between px-8 py-4 shrink-0">
+<div class="flex items-center gap-4 w-full max-w-5xl mx-auto">
+<!-- Source Select -->
+<div class="relative group flex-1">
+<button class="flex items-center justify-between w-full px-4 py-3 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl shadow-sm hover:border-primary hover:ring-1 hover:ring-primary/20 transition-all">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="font-semibold text-text-main dark:text-white">English (Detected)</span>
+</div>
+<span class="material-symbols-outlined text-text-sub">expand_more</span>
+</button>
+</div>
+<!-- Swap Button -->
+<button class="p-2 rounded-full bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-sm text-text-sub hover:text-primary hover:bg-primary/5 transition-transform hover:rotate-180">
+<span class="material-symbols-outlined">swap_horiz</span>
+</button>
+<!-- Target Select -->
+<div class="relative group flex-1">
+<button class="flex items-center justify-between w-full px-4 py-3 bg-white dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl shadow-sm hover:border-primary hover:ring-1 hover:ring-primary/20 transition-all">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] fill-current">flag</span>
+<span class="font-semibold text-text-main dark:text-white">French</span>
+</div>
+<span class="material-symbols-outlined text-text-sub">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Translation Grid -->
+<div class="flex-1 px-8 pb-8 overflow-y-auto">
+<div class="w-full max-w-5xl mx-auto h-full grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Source Panel -->
+<div class="relative flex flex-col h-full bg-white dark:bg-surface-dark rounded-2xl shadow-soft border border-border-light dark:border-border-dark overflow-hidden group/source focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary rounded-l-2xl opacity-0 focus-within:opacity-100 transition-opacity"></div>
+<textarea class="flex-1 w-full p-6 bg-transparent border-0 resize-none focus:ring-0 text-lg leading-relaxed text-text-main dark:text-white placeholder:text-gray-300 dark:placeholder:text-gray-600 font-display" placeholder="Type to translate or drag an image here..." spellcheck="false"></textarea>
+<!-- Integrated Drag & Drop / Tools Area -->
+<div class="px-4 py-3 border-t border-dashed border-border-light dark:border-border-dark bg-background-light/50 dark:bg-background-dark/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-text-sub hover:text-primary hover:bg-primary/5 transition-colors group/upload">
+<span class="material-symbols-outlined text-[20px]">add_photo_alternate</span>
+<span>Upload Image</span>
+</button>
+<button class="p-1.5 rounded-lg text-text-sub hover:text-primary hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+<span class="text-xs text-text-sub/70 font-medium">Markdown Supported</span>
+</div>
+<!-- Drag Overlay (Hidden by default, showing concept) -->
+<div class="absolute inset-0 bg-primary/5 backdrop-blur-sm border-2 border-dashed border-primary m-2 rounded-xl flex flex-col items-center justify-center opacity-0 pointer-events-none group-hover/source:opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary text-5xl mb-2">upload_file</span>
+<p class="text-primary font-bold">Drop image to scan</p>
+</div>
+</div>
+<!-- Destination Panel -->
+<div class="relative flex flex-col h-full bg-background-light dark:bg-[#1a2e46] rounded-2xl shadow-inner-glow border border-border-light dark:border-border-dark overflow-hidden">
+<!-- Loading State (Top Border) -->
+<div class="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+<div class="h-full bg-primary w-1/3 animate-[loading_2s_ease-in-out_infinite] hidden" id="loading-bar"></div>
+</div>
+<div class="flex-1 p-6 text-lg leading-relaxed text-text-main dark:text-white relative">
+<!-- Placeholder for empty state -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
+<div class="text-center">
+<span class="material-symbols-outlined text-6xl text-gray-300 dark:text-gray-600 mb-2">translate</span>
+<p class="text-sm text-text-sub">Translation will appear here</p>
+</div>
+</div>
+<!-- Actual content would go here -->
+</div>
+<!-- Action Bar -->
+<div class="px-4 py-3 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-white/50 dark:bg-surface-dark/50">
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg text-text-sub hover:text-primary hover:bg-white dark:hover:bg-surface-dark hover:shadow-sm transition-all tooltip" title="Copy">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+<button class="p-2 rounded-lg text-text-sub hover:text-primary hover:bg-white dark:hover:bg-surface-dark hover:shadow-sm transition-all" title="Listen">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<button class="p-2 rounded-lg text-text-sub hover:text-primary hover:bg-white dark:hover:bg-surface-dark hover:shadow-sm transition-all" title="Download">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<button class="p-2 rounded-lg text-text-sub hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Main Action -->
+<div class="shrink-0 px-8 py-6 border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark z-10 shadow-[0_-4px_20px_-2px_rgba(0,0,0,0.05)]">
+<div class="max-w-5xl mx-auto flex items-center justify-between">
+<div class="text-sm text-text-sub flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span>Model inference runs locally. No data leaves your device.</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2.5 rounded-xl font-semibold text-text-sub hover:bg-background-light dark:hover:bg-background-dark transition-colors">
+                            Clear
+                        </button>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-95 transition-all">
+<span>Translate</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<style>
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
+        }
+    </style>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Server Disconnected - TranslateGemma</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "background-light": "#ffffff",
+                        "background-dark": "#17293f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-[#f8fbfc] dark:bg-background-dark font-display min-h-screen flex flex-col text-[#0c171d] dark:text-white overflow-x-hidden transition-colors duration-200">
+<!-- Top Navigation -->
+<header class="w-full bg-background-light dark:bg-background-dark border-b border-[#e6f0f4] dark:border-slate-700 sticky top-0 z-50">
+<div class="px-4 md:px-10 py-3 flex items-center justify-between max-w-7xl mx-auto">
+<!-- Logo Section -->
+<div class="flex items-center gap-4">
+<div class="size-6 text-[#0c171d] dark:text-white">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">TranslateGemma</h2>
+</div>
+<!-- Right Actions -->
+<div class="flex gap-3">
+<!-- Offline Badge -->
+<div class="flex items-center justify-center px-4 h-10 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="mr-2 text-xs">●</span> Offline
+                </div>
+<!-- Settings Button -->
+<button class="flex items-center justify-center h-10 w-10 rounded-lg bg-[#e6f0f4] dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-[#0c171d] dark:text-white transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-grow flex flex-col items-center justify-center py-12 px-4 w-full">
+<div class="max-w-[640px] w-full flex flex-col gap-8">
+<!-- Hero / Empty State -->
+<div class="flex flex-col items-center text-center gap-6">
+<!-- Abstract Illustration -->
+<div class="w-full max-w-[320px] aspect-video bg-white dark:bg-slate-800/50 rounded-xl relative overflow-hidden flex items-center justify-center border border-slate-200 dark:border-slate-700 shadow-sm" data-alt="Abstract visualization of a disconnected server node with floating geometric shapes and a warning symbol">
+<!-- Geometric Pattern Background -->
+<div class="absolute inset-0 opacity-60" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="absolute top-0 right-0 w-24 h-24 bg-red-50 dark:bg-red-900/10 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="absolute bottom-0 left-0 w-16 h-16 bg-blue-50 dark:bg-blue-900/10 rounded-tr-full -ml-4 -mb-4"></div>
+<!-- Icon Layer -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="p-4 bg-white dark:bg-[#17293f] rounded-full shadow-lg border border-slate-100 dark:border-slate-600 mb-[-12px] z-20">
+<span class="material-symbols-outlined text-red-500 text-[40px]">link_off</span>
+</div>
+<div class="h-1 w-12 bg-slate-200 dark:bg-slate-600 rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-3 max-w-[480px]">
+<h1 class="text-2xl md:text-3xl font-bold text-[#0c171d] dark:text-white tracking-tight">Cannot Connect to Ollama Server</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                        TranslateGemma needs a local Ollama instance to function. Please ensure the server is running on your machine.
+                    </p>
+</div>
+<button class="flex items-center justify-center h-11 px-8 rounded-lg bg-primary hover:bg-primary/90 text-white text-sm font-bold tracking-[0.015em] transition-all shadow-md shadow-primary/20 hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto">
+                    Retry Connection
+                </button>
+</div>
+<!-- Troubleshooting Card -->
+<div class="bg-background-light dark:bg-[#1e3a5a] rounded-xl border border-slate-200 dark:border-slate-700/50 shadow-sm overflow-hidden mt-6">
+<div class="bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-700/50 px-6 py-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">build_circle</span>
+<h3 class="font-bold text-base text-[#0c171d] dark:text-white">Troubleshooting Steps</h3>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<!-- Step 1 -->
+<label class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50 group">
+<div class="pt-0.5 relative">
+<input class="h-5 w-5 rounded border-slate-300 dark:border-slate-500 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-slate-300 focus:outline-none transition-all peer" type="checkbox"/>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[#0c171d] dark:text-white font-medium text-sm group-hover:text-primary transition-colors">Ensure the Ollama application is running</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Check your terminal or system tray icon.</p>
+</div>
+</label>
+<!-- Step 2 -->
+<label class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50 group">
+<div class="pt-0.5">
+<input class="h-5 w-5 rounded border-slate-300 dark:border-slate-500 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-slate-300 focus:outline-none transition-all" type="checkbox"/>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[#0c171d] dark:text-white font-medium text-sm group-hover:text-primary transition-colors">Check that port 11434 is not blocked</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Firewalls or VPNs might interfere with localhost connections.</p>
+</div>
+</label>
+<!-- Step 3 -->
+<label class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors cursor-pointer border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50 group">
+<div class="pt-0.5">
+<input class="h-5 w-5 rounded border-slate-300 dark:border-slate-500 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-slate-300 focus:outline-none transition-all" type="checkbox"/>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[#0c171d] dark:text-white font-medium text-sm group-hover:text-primary transition-colors">Verify your model is pulled</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Run <span class="font-mono bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded text-[11px] text-slate-700 dark:text-slate-300">ollama list</span> to check installed models.</p>
+</div>
+</label>
+<!-- Code Snippet -->
+<div class="mt-3 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center justify-between mb-2">
+<p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Command fix</p>
+<a class="text-xs text-primary font-medium hover:underline" href="#">View Documentation</a>
+</div>
+<div class="bg-[#0f172a] dark:bg-black rounded-lg p-3.5 flex items-center justify-between group shadow-inner border border-slate-800">
+<code class="text-xs md:text-sm font-mono text-emerald-400 overflow-x-auto whitespace-nowrap scrollbar-hide mr-4">OLLAMA_ORIGINS="*" ollama serve</code>
+<button aria-label="Copy command" class="text-slate-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TranslateGemma - Tablet View</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "background-light": "#f0f4f8",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "text-main-light": "#0f172a", 
+                        "text-main-dark": "#f8fafc",
+                        "text-sec-light": "#64748b",
+                        "text-sec-dark": "#94a3b8",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#334155"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for textareas */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark textarea::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        
+        /* Smooth height transition for panels */
+        .panel-transition {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen flex flex-col overflow-hidden text-text-main-light dark:text-text-main-dark transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="flex-none h-16 border-b border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-4 lg:px-6 flex items-center justify-between z-20 shadow-sm relative">
+<div class="flex items-center gap-4">
+<!-- Hamburger Menu (Triggers Drawer) -->
+<button class="p-2 rounded hover:bg-background-light dark:hover:bg-background-dark text-text-sec-light dark:text-text-sec-dark transition-colors">
+<span class="material-symbols-outlined !text-[28px]">menu</span>
+</button>
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined !text-[20px]">translate</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight hidden sm:block">TranslateGemma</h1>
+</div>
+</div>
+<!-- Model Selector (Pill) -->
+<div class="flex-1 flex justify-center px-4">
+<button class="group flex items-center gap-2 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark py-2 px-4 rounded-full max-w-[280px] w-full justify-between hover:border-primary transition-all">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-primary !text-[20px]">smart_toy</span>
+<div class="flex flex-col items-start truncate">
+<span class="text-xs font-semibold text-text-sec-light dark:text-text-sec-dark uppercase tracking-wider leading-none mb-0.5">Model</span>
+<span class="text-sm font-medium leading-none truncate">Gemma-7b-Instruct-v1.1</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-sec-light dark:text-text-sec-dark !text-[20px] group-hover:text-primary transition-colors">expand_more</span>
+</button>
+</div>
+<!-- Status & Settings -->
+<div class="flex items-center gap-3">
+<div class="hidden md:flex items-center gap-2 bg-green-500/10 dark:bg-green-500/20 px-2 py-1 rounded text-xs font-medium text-green-700 dark:text-green-400 border border-green-200 dark:border-green-900">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span>Local</span>
+</div>
+<button class="p-2 rounded hover:bg-background-light dark:hover:bg-background-dark text-text-sec-light dark:text-text-sec-dark transition-colors">
+<span class="material-symbols-outlined !text-[24px]">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
+                JD
+            </div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex relative overflow-hidden">
+<!-- Sidebar Drawer (Collapsed/Overlay on Tablet) -->
+<!-- In a real implementation, this would be toggled via JS classes. Showing it 'closed' but structure ready. -->
+<aside class="hidden xl:flex flex-col w-64 border-r border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark h-full">
+<div class="p-4 space-y-1">
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary font-medium">
+<span class="material-symbols-outlined !text-[20px]">history</span>
+                    Recent History
+                </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark font-medium transition-colors">
+<span class="material-symbols-outlined !text-[20px]">bookmark</span>
+                    Saved Phrases
+                </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded text-text-sec-light dark:text-text-sec-dark hover:bg-background-light dark:hover:bg-background-dark font-medium transition-colors">
+<span class="material-symbols-outlined !text-[20px]">description</span>
+                    Documents
+                </button>
+</div>
+<div class="mt-auto p-4 border-t border-border-light dark:border-border-dark">
+<div class="bg-background-light dark:bg-background-dark p-3 rounded border border-border-light dark:border-border-dark">
+<div class="text-xs font-medium text-text-sec-light dark:text-text-sec-dark mb-2">SERVER STATUS</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-green-500 !text-[16px]">check_circle</span>
+<span>Ollama Running</span>
+</div>
+<div class="text-xs text-text-sec-light dark:text-text-sec-dark mt-1">v0.1.28 • Port 11434</div>
+</div>
+</div>
+</aside>
+<!-- Translation Interface -->
+<div class="flex-1 flex flex-col h-full bg-background-light dark:bg-background-dark overflow-y-auto p-4 md:p-6 lg:p-8">
+<div class="max-w-6xl mx-auto w-full h-full flex flex-col gap-6">
+<!-- Main Translation Grid -->
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 min-h-[400px]">
+<!-- Source Panel -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex flex-col group/source focus-within:ring-2 focus-within:ring-primary/20 transition-shadow duration-200">
+<!-- Language Header -->
+<div class="flex items-center justify-between p-3 border-b border-border-light dark:border-border-dark">
+<button class="flex items-center gap-2 hover:bg-background-light dark:hover:bg-background-dark px-3 py-1.5 rounded transition-colors">
+<span class="font-semibold text-primary">English (Detected)</span>
+<span class="material-symbols-outlined !text-[20px] text-text-sec-light dark:text-text-sec-dark">expand_more</span>
+</button>
+<div class="flex gap-1">
+<button class="p-2 text-text-sec-light dark:text-text-sec-dark hover:text-primary hover:bg-background-light dark:hover:bg-background-dark rounded transition-colors" title="Paste">
+<span class="material-symbols-outlined !text-[20px]">content_paste</span>
+</button>
+<button class="p-2 text-text-sec-light dark:text-text-sec-dark hover:text-red-500 hover:bg-background-light dark:hover:bg-background-dark rounded transition-colors" title="Clear">
+<span class="material-symbols-outlined !text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Text Area -->
+<div class="flex-1 relative">
+<textarea class="w-full h-full p-4 md:p-6 bg-transparent resize-none border-none focus:ring-0 text-lg md:text-xl leading-relaxed placeholder:text-text-sec-light/50 dark:placeholder:text-text-sec-dark/50 text-text-main-light dark:text-text-main-dark" placeholder="Type or paste text here to translate..." spellcheck="false"></textarea>
+<!-- Bottom Floating Actions (Mic/Image) -->
+<div class="absolute bottom-4 left-4 flex gap-2">
+<button class="flex items-center gap-2 bg-background-light dark:bg-background-dark hover:bg-border-light dark:hover:bg-border-dark border border-border-light dark:border-border-dark px-3 py-1.5 rounded-full text-sm font-medium transition-colors shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">mic</span>
+<span>Voice</span>
+</button>
+<button class="flex items-center gap-2 bg-background-light dark:bg-background-dark hover:bg-border-light dark:hover:bg-border-dark border border-border-light dark:border-border-dark px-3 py-1.5 rounded-full text-sm font-medium transition-colors shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">image</span>
+<span>Image</span>
+</button>
+</div>
+<!-- Char Count -->
+<div class="absolute bottom-4 right-4 text-xs text-text-sec-light dark:text-text-sec-dark font-medium bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur px-2 py-1 rounded">
+                                0 / 5000
+                            </div>
+</div>
+</div>
+<!-- Middle Action Bar (Responsive: Vertical on desktop, Horizontal on mobile/stacked) -->
+<!-- Used absolute positioning or flex order tricks usually, here just hidden on small and reimagined -->
+<!-- We will integrate the 'Swap' button into the gap visually or floating -->
+<!-- Target Panel -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark flex flex-col relative overflow-hidden">
+<!-- Swap Button (Absolute Centered on Edge) -->
+<div class="absolute top-[50%] -left-4 -translate-y-[50%] z-10 hidden md:block">
+<button class="bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-full p-2 shadow-md text-primary hover:bg-background-light dark:hover:bg-background-dark transition-all hover:rotate-180">
+<span class="material-symbols-outlined !text-[24px]">sync_alt</span>
+</button>
+</div>
+<!-- Language Header -->
+<div class="flex items-center justify-between p-3 border-b border-border-light dark:border-border-dark bg-background-light/30 dark:bg-background-dark/30">
+<button class="flex items-center gap-2 hover:bg-background-light dark:hover:bg-background-dark px-3 py-1.5 rounded transition-colors">
+<span class="font-semibold text-text-main-light dark:text-text-main-dark">Spanish</span>
+<span class="material-symbols-outlined !text-[20px] text-text-sec-light dark:text-text-sec-dark">expand_more</span>
+</button>
+<div class="flex gap-1">
+<button class="p-2 text-text-sec-light dark:text-text-sec-dark hover:text-primary hover:bg-background-light dark:hover:bg-background-dark rounded transition-colors" title="Copy">
+<span class="material-symbols-outlined !text-[20px]">content_copy</span>
+</button>
+<button class="p-2 text-text-sec-light dark:text-text-sec-dark hover:text-primary hover:bg-background-light dark:hover:bg-background-dark rounded transition-colors" title="Listen">
+<span class="material-symbols-outlined !text-[20px]">volume_up</span>
+</button>
+</div>
+</div>
+<!-- Result Area -->
+<div class="flex-1 bg-background-light/20 dark:bg-background-dark/20 relative p-4 md:p-6 flex flex-col">
+<!-- Empty State / Placeholder -->
+<!-- Ideally hidden when content exists -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-40">
+<div class="w-32 h-32 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-2xl"></div>
+<span class="material-symbols-outlined !text-[48px] text-text-sec-light dark:text-text-sec-dark mb-2">translate</span>
+<p class="text-sm text-text-sec-light dark:text-text-sec-dark">Translation will appear here</p>
+</div>
+<!-- Content (Hidden for demo of empty state, but structure ready) -->
+<!-- 
+                            <p class="text-lg md:text-xl leading-relaxed text-text-main-light dark:text-text-main-dark">
+                                Escriba o pegue el texto aquí para traducir...
+                            </p>
+                            -->
+<!-- Latency Indicator (Bottom) -->
+<div class="mt-auto pt-4 border-t border-dashed border-border-light dark:border-border-dark flex justify-between items-center opacity-0"> <!-- Opacity 0 for now -->
+<span class="text-xs text-text-sec-light dark:text-text-sec-dark">Gemma-7b • 45ms</span>
+<div class="flex gap-1">
+<button class="p-1.5 hover:bg-background-light dark:hover:bg-background-dark rounded text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined !text-[18px]">thumb_up</span>
+</button>
+<button class="p-1.5 hover:bg-background-light dark:hover:bg-background-dark rounded text-text-sec-light dark:text-text-sec-dark">
+<span class="material-symbols-outlined !text-[18px]">thumb_down</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Action Button (Floating or Bottom Block) -->
+<div class="flex justify-center pb-4 md:pb-0">
+<button class="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/30 rounded-full h-14 pl-6 pr-8 flex items-center gap-3 transition-transform active:scale-95 group">
+<div class="bg-white/20 p-1.5 rounded-full">
+<span class="material-symbols-outlined !text-[24px] group-hover:rotate-12 transition-transform">auto_awesome</span>
+</div>
+<span class="text-lg font-bold tracking-wide">Translate</span>
+</button>
+</div>
+</div>
+<!-- Alternative History Snippet (For larger screens) -->
+<div class="mt-8 hidden lg:block">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-semibold text-text-sec-light dark:text-text-sec-dark uppercase tracking-wider">Recent Translations</h3>
+<button class="text-sm text-primary hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- History Item 1 -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark hover:border-primary/50 cursor-pointer transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2 text-xs font-medium text-text-sec-light dark:text-text-sec-dark">
+<span>EN</span>
+<span class="material-symbols-outlined !text-[12px]">arrow_forward</span>
+<span>ES</span>
+</div>
+<span class="text-xs text-text-sec-light dark:text-text-sec-dark">2m ago</span>
+</div>
+<p class="text-sm text-text-main-light dark:text-text-main-dark line-clamp-1 mb-1">Where is the nearest library?</p>
+<p class="text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-1">¿Dónde está la biblioteca más cercana?</p>
+</div>
+<!-- History Item 2 -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark hover:border-primary/50 cursor-pointer transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2 text-xs font-medium text-text-sec-light dark:text-text-sec-dark">
+<span>EN</span>
+<span class="material-symbols-outlined !text-[12px]">arrow_forward</span>
+<span>FR</span>
+</div>
+<span class="text-xs text-text-sec-light dark:text-text-sec-dark">1h ago</span>
+</div>
+<p class="text-sm text-text-main-light dark:text-text-main-dark line-clamp-1 mb-1">Technical documentation for the new API</p>
+<p class="text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-1">Documentation technique pour la nouvelle API</p>
+</div>
+<!-- History Item 3 -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark hover:border-primary/50 cursor-pointer transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2 text-xs font-medium text-text-sec-light dark:text-text-sec-dark">
+<span>DE</span>
+<span class="material-symbols-outlined !text-[12px]">arrow_forward</span>
+<span>EN</span>
+</div>
+<span class="text-xs text-text-sec-light dark:text-text-sec-dark">Yesterday</span>
+</div>
+<p class="text-sm text-text-main-light dark:text-text-main-dark line-clamp-1 mb-1">Guten Morgen, wie geht es Ihnen?</p>
+<p class="text-sm text-text-sec-light dark:text-text-sec-dark line-clamp-1">Good morning, how are you?</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Touch-Friendly Overlay Controls (For Tablet specificity) -->
+<!-- Just an example of how one might add quick floating controls -->
+<div class="absolute bottom-6 right-6 md:hidden">
+<button class="w-12 h-12 bg-surface-light dark:bg-surface-dark rounded-full shadow-lg border border-border-light dark:border-border-dark flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</main>
+</body></html>

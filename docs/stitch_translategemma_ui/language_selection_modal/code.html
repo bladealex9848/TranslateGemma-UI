@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Language Selection Modal - TranslateGemma</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007db8",
+                        "background-light": "#ffffff",
+                        "background-dark": "#17293f",
+                        "surface-light": "#f8fbfc",
+                        "surface-dark": "#1e3a5f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for the utilitarian look */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.3);
+            border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(156, 163, 175, 0.5);
+        }
+        
+        /* Keyframe for modal entry */
+        @keyframes modal-pop {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-modal {
+            animation: modal-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen overflow-hidden selection:bg-primary/20 selection:text-primary">
+<!-- Mock Background Application Context (The "App" behind the modal) -->
+<div aria-hidden="true" class="absolute inset-0 z-0 flex flex-col opacity-30 pointer-events-none select-none overflow-hidden">
+<div class="h-16 border-b border-gray-200 dark:border-white/10 flex items-center px-8 justify-between bg-surface-light dark:bg-surface-dark">
+<div class="w-32 h-4 bg-gray-200 dark:bg-white/10 rounded"></div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-white/10"></div>
+</div>
+</div>
+<div class="flex-1 flex">
+<div class="w-64 border-r border-gray-200 dark:border-white/10 bg-surface-light dark:bg-surface-dark p-6 space-y-4">
+<div class="w-full h-4 bg-gray-200 dark:bg-white/10 rounded mb-8"></div>
+<div class="w-3/4 h-3 bg-gray-200 dark:bg-white/10 rounded"></div>
+<div class="w-2/3 h-3 bg-gray-200 dark:bg-white/10 rounded"></div>
+<div class="w-4/5 h-3 bg-gray-200 dark:bg-white/10 rounded"></div>
+</div>
+<div class="flex-1 p-12 bg-background-light dark:bg-background-dark flex flex-col items-center">
+<div class="w-full max-w-3xl h-64 rounded-xl bg-gray-100 dark:bg-white/5 mb-8"></div>
+<div class="w-full max-w-3xl h-64 rounded-xl bg-gray-100 dark:bg-white/5"></div>
+</div>
+</div>
+</div>
+<!-- Overlay Backdrop -->
+<div class="fixed inset-0 z-40 bg-[#17293f]/40 backdrop-blur-[4px] flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+<!-- Modal Container -->
+<div class="animate-modal bg-background-light dark:bg-surface-dark w-full max-w-[840px] max-h-[85vh] h-full rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] flex flex-col relative border border-gray-200 dark:border-white/10 overflow-hidden">
+<!-- Sticky Header: Search -->
+<div class="shrink-0 border-b border-gray-100 dark:border-white/5 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-md z-10">
+<div class="flex items-center px-6 py-5 gap-4">
+<span class="material-symbols-outlined text-primary text-[28px]">search</span>
+<input autofocus="" class="flex-1 bg-transparent border-none p-0 text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 font-medium tracking-tight" placeholder="Search 55 languages..." type="text"/>
+<!-- Keyboard shortcut hint -->
+<div class="hidden sm:flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-white/10 rounded text-xs font-semibold text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-white/5">
+<span>ESC</span>
+</div>
+<button class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 sm:p-8 scroll-smooth">
+<!-- Section: Recent -->
+<div class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest pl-1 font-display">Recent</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<!-- Active Item (Recent) -->
+<button class="group relative flex items-center justify-between p-4 rounded-lg bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all text-left outline-none ring-offset-2 ring-offset-white dark:ring-offset-[#17293f] focus-visible:ring-2 focus-visible:ring-primary">
+<div class="flex flex-col gap-0.5">
+<span class="text-base font-semibold text-primary dark:text-primary-400">English</span>
+<span class="text-xs text-primary/70 dark:text-primary/60 font-medium">English</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-white/5 border border-transparent hover:bg-white dark:hover:bg-white/10 hover:shadow-sm hover:border-gray-200 dark:hover:border-white/10 transition-all text-left outline-none ring-offset-2 ring-offset-white dark:ring-offset-[#17293f] focus-visible:ring-2 focus-visible:ring-primary">
+<div class="flex flex-col gap-0.5">
+<span class="text-base font-medium text-gray-900 dark:text-white group-hover:text-primary transition-colors">Spanish</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Español</span>
+</div>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-white/5 border border-transparent hover:bg-white dark:hover:bg-white/10 hover:shadow-sm hover:border-gray-200 dark:hover:border-white/10 transition-all text-left outline-none ring-offset-2 ring-offset-white dark:ring-offset-[#17293f] focus-visible:ring-2 focus-visible:ring-primary">
+<div class="flex flex-col gap-0.5">
+<span class="text-base font-medium text-gray-900 dark:text-white group-hover:text-primary transition-colors">French</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Français</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Section: Favorites -->
+<div class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest pl-1 font-display">Favorites</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-2">
+<!-- Favorite Item -->
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex items-center gap-3">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">German</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Deutsch</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-yellow-500 fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<!-- Favorite Item -->
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex items-center gap-3">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Japanese</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">日本語</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-yellow-500 fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</div>
+</div>
+<!-- Section: All Languages -->
+<div>
+<div class="flex items-center justify-between mb-4 sticky top-0">
+<h3 class="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest pl-1 font-display">All Languages</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-1">
+<!-- Language Item Component -->
+<!-- Repeating pattern for multiple items -->
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Arabic</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">العربية</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Bulgarian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Български</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Chinese (Simplified)</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">简体中文</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Chinese (Traditional)</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">繁體中文</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Croatian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Hrvatski</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Czech</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Čeština</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Danish</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Dansk</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Dutch</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Nederlands</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Finnish</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Suomi</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Greek</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Ελληνικά</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Hindi</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">हिन्दी</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Hungarian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Magyar</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Indonesian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Bahasa Indonesia</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Italian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Italiano</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Korean</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">한국어</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Norwegian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Norsk</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Polish</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Polski</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Portuguese</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Português</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Russian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Русский</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Swedish</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Svenska</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Thai</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">ไทย</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Turkish</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Türkçe</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Ukrainian</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Українська</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+<button class="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-gray-900 dark:text-white">Vietnamese</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">Tiếng Việt</span>
+</div>
+<div class="opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity p-1 -mr-1 text-gray-300 dark:text-gray-600 hover:text-yellow-500 dark:hover:text-yellow-400 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</div>
+</button>
+</div>
+<!-- Bottom space for scrolling comfort -->
+<div class="h-10"></div>
+</div>
+</div>
+<!-- Sticky Footer Gradient (optional visual refinement) -->
+<div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-[#1e3a5f] to-transparent pointer-events-none"></div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TranslateGemma AI - History</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#007db8",
+              "background-light": "#ffffff",
+              "background-dark": "#17293f",
+              "slate-app": "#f8fbfc", // Matching the TopNavBar bg style
+              "dark-surface": "#1e334d",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155; 
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+    </style>
+</head>
+<body class="bg-slate-app dark:bg-background-dark text-slate-900 dark:text-slate-100 flex flex-col h-screen overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex shrink-0 items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-700 bg-background-light dark:bg-background-dark px-6 py-3 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="h-full w-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M7.24189 26.4066C7.31369 26.4411 7.64204 26.5637 8.52504 26.3738C9.59462 26.1438 11.0343 25.5311 12.7183 24.4963C14.7583 23.2426 17.0256 21.4503 19.238 19.238C21.4503 17.0256 23.2426 14.7583 24.4963 12.7183C25.5311 11.0343 26.1438 9.59463 26.3738 8.52504C26.5637 7.64204 26.4411 7.31369 26.4066 7.24189C26.345 7.21246 26.143 7.14535 25.6664 7.1918C24.9745 7.25925 23.9954 7.5498 22.7699 8.14278C20.3369 9.32007 17.3369 11.4915 14.4142 14.4142C11.4915 17.3369 9.32007 20.3369 8.14278 22.7699C7.5498 23.9954 7.25925 24.9745 7.1918 25.6664C7.14534 26.143 7.21246 26.345 7.24189 26.4066ZM29.9001 10.7285C29.4519 12.0322 28.7617 13.4172 27.9042 14.8126C26.465 17.1544 24.4686 19.6641 22.0664 22.0664C19.6641 24.4686 17.1544 26.465 14.8126 27.9042C13.4172 28.7617 12.0322 29.4519 10.7285 29.9001L21.5754 40.747C21.6001 40.7606 21.8995 40.931 22.8729 40.7217C23.9424 40.4916 25.3821 39.879 27.0661 38.8441C29.1062 37.5904 31.3734 35.7982 33.5858 33.5858C35.7982 31.3734 37.5904 29.1062 38.8441 27.0661C39.879 25.3821 40.4916 23.9425 40.7216 22.8729C40.931 21.8995 40.7606 21.6001 40.747 21.5754L29.9001 10.7285ZM29.2403 4.41187L43.5881 18.7597C44.9757 20.1473 44.9743 22.1235 44.6322 23.7139C44.2714 25.3919 43.4158 27.2666 42.252 29.1604C40.8128 31.5022 38.8165 34.012 36.4142 36.4142C34.012 38.8165 31.5022 40.8128 29.1604 42.252C27.2666 43.4158 25.3919 44.2714 23.7139 44.6322C22.1235 44.9743 20.1473 44.9757 18.7597 43.5881L4.41187 29.2403C3.29027 28.1187 3.08209 26.5973 3.21067 25.2783C3.34099 23.9415 3.8369 22.4852 4.54214 21.0277C5.96129 18.0948 8.43335 14.7382 11.5858 11.5858C14.7382 8.43335 18.0948 5.9613 21.0277 4.54214C22.4852 3.8369 23.9415 3.34099 25.2783 3.21067C26.5973 3.08209 28.1187 3.29028 29.2403 4.41187Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_543"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">TranslateGemma AI</h2>
+</div>
+<!-- Global Nav Links -->
+<div class="hidden md:flex items-center gap-6 ml-4">
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary text-sm font-medium transition-colors" href="#">Translate</a>
+<a class="text-slate-900 dark:text-white text-sm font-medium" href="#">History</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary text-sm font-medium transition-colors" href="#">Models</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Status Indicator -->
+<div class="flex items-center gap-2 bg-green-50 dark:bg-green-900/30 px-3 py-1.5 rounded-full border border-green-100 dark:border-green-800">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+</span>
+<span class="text-xs font-semibold text-green-700 dark:text-green-300">Ollama Connected</span>
+</div>
+<div class="w-px h-6 bg-slate-200 dark:bg-slate-700"></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 cursor-pointer ring-2 ring-transparent hover:ring-slate-200 dark:hover:ring-slate-600 transition-all" data-alt="User profile picture placeholder, abstract gradient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUuekZfDNkIK2dhrkbi_Q-m7NrU4il20AnnXiz397E-5k-tAenBd9EWgyYAX_kG6NeScEeXnBTaIFuzmCl8zVjXu2C7cjqRgrWUQICpN5JRJQjVMaafq7a8QErchyFU1RduQaHrR6GJMbmglYBE-Okeh5dtrbXkl9ziHKZKHmjHXbPhW5w-RH4fwh_J2nLUC3clJERsr7HiaqDWn4MZXu5fRGIqrLfkH-02cVqZ-N7jmiPsevgbn0UrX7_BiLbQU1oc3dLLdkqpac");'></div>
+</div>
+</header>
+<!-- Main Content Area: Master-Detail Layout -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Master View: Filters & History List (60% width) -->
+<section class="flex flex-col w-full lg:w-3/5 border-r border-slate-200 dark:border-slate-700 bg-slate-app dark:bg-background-dark overflow-hidden">
+<!-- List Header & Filters -->
+<div class="shrink-0 px-6 py-5 border-b border-slate-200 dark:border-slate-700 bg-slate-app/80 dark:bg-background-dark/95 backdrop-blur-sm z-10 sticky top-0">
+<div class="flex items-center justify-between mb-4">
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Translation History</h1>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">1,248 Records</span>
+</div>
+<!-- Search & Toolbar -->
+<div class="flex flex-col md:flex-row gap-3">
+<!-- Search Input -->
+<div class="relative grow max-w-md">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-full h-10 pl-10 pr-4 text-sm bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-slate-900 dark:text-white placeholder:text-slate-400 transition-shadow" placeholder="Search content, tags, or IDs..." type="text"/>
+</div>
+<!-- Filter Controls -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-hide">
+<button class="flex items-center gap-2 px-3 h-10 text-sm font-medium bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+<span>Language</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 h-10 text-sm font-medium bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+<span>Model</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 h-10 text-sm font-medium bg-white dark:bg-dark-surface border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Date</span>
+</button>
+<div class="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<button aria-label="Clear filters" class="flex items-center justify-center size-10 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">filter_alt_off</span>
+</button>
+</div>
+</div>
+<!-- Active Filters Row (Optional) -->
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 text-primary dark:text-blue-300 text-xs font-medium rounded border border-primary/20">
+                        Model: Gemma 27B
+                        <button class="hover:text-blue-800 dark:hover:text-white"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+</div>
+</div>
+<!-- Scrollable List Container -->
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<!-- History Item 1 (Selected) -->
+<div class="group relative p-4 bg-white dark:bg-dark-surface rounded-xl border-l-4 border-l-primary shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-slate-100 dark:ring-slate-700">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">EN → DE</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">Gemma 27B</span>
+</div>
+<span class="text-xs text-slate-400 font-mono">10:42 AM</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                        "The integration of large language models into local environments..."
+                    </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        Die Integration großer Sprachmodelle in lokale Umgebungen stellt einen bedeutenden Fortschritt in der Datensicherheit und Latenzreduzierung dar.
+                    </p>
+<!-- Hover Action (Visible on hover) -->
+<div class="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 bg-slate-100 dark:bg-slate-700 rounded-full hover:bg-primary hover:text-white text-slate-500 transition-colors">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="group relative p-4 bg-white dark:bg-dark-surface rounded-xl border-l-4 border-l-transparent hover:border-l-slate-300 dark:hover:border-l-slate-600 shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-slate-100 dark:ring-slate-700">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">JP → EN</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300">Llama 3</span>
+</div>
+<span class="text-xs text-slate-400 font-mono">Yesterday</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                        "人工知能の急速な発展は..."
+                    </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        The rapid development of artificial intelligence is fundamentally changing how we approach software engineering and creative problem solving.
+                    </p>
+</div>
+<!-- History Item 3 -->
+<div class="group relative p-4 bg-white dark:bg-dark-surface rounded-xl border-l-4 border-l-transparent hover:border-l-slate-300 dark:hover:border-l-slate-600 shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-slate-100 dark:ring-slate-700">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">FR → EN</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">Gemma 7B</span>
+</div>
+<span class="text-xs text-slate-400 font-mono">Oct 23</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                        "La mise en œuvre de protocoles de sécurité..."
+                    </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        The implementation of strict security protocols is mandatory for all new subsystem deployments starting next quarter.
+                    </p>
+</div>
+<!-- History Item 4 -->
+<div class="group relative p-4 bg-white dark:bg-dark-surface rounded-xl border-l-4 border-l-transparent hover:border-l-slate-300 dark:hover:border-l-slate-600 shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-slate-100 dark:ring-slate-700">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">ES → EN</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">Gemma 27B</span>
+</div>
+<span class="text-xs text-slate-400 font-mono">Oct 22</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                        "Revisión de código para el módulo de autenticación."
+                    </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        Code review for the authentication module. Please check lines 45 through 90 for potential race conditions.
+                    </p>
+</div>
+<!-- History Item 5 -->
+<div class="group relative p-4 bg-white dark:bg-dark-surface rounded-xl border-l-4 border-l-transparent hover:border-l-slate-300 dark:hover:border-l-slate-600 shadow-sm hover:shadow-md transition-all cursor-pointer ring-1 ring-slate-100 dark:ring-slate-700">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300">IT → EN</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300">Mistral</span>
+</div>
+<span class="text-xs text-slate-400 font-mono">Oct 21</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                        "Progetto Alpha: Aggiornamento stato settimanale"
+                    </h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        Project Alpha: Weekly status update. The team has successfully migrated the database schema.
+                    </p>
+</div>
+<!-- Load More -->
+<div class="pt-4 pb-8 flex justify-center">
+<button class="text-sm text-slate-500 hover:text-primary font-medium flex items-center gap-1 transition-colors">
+                        Load older history
+                        <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Detail Pane (40% width, hidden on mobile, fixed on desktop) -->
+<aside class="hidden lg:flex flex-col w-2/5 bg-background-light dark:bg-[#1e334d] shadow-[-4px_0_15px_-3px_rgba(0,0,0,0.05)] z-20 overflow-hidden h-full">
+<!-- Pane Header -->
+<div class="shrink-0 px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Translation Detail</h2>
+<span class="material-symbols-outlined text-green-500 text-[18px]" title="Verified Complete">check_circle</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">ID: #TR-8823-GX</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Re-run">
+<span class="material-symbols-outlined text-[20px]">replay</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors" title="Share">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+</button>
+</div>
+</div>
+<div class="flex gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                        Oct 24, 2023 • 10:42 AM
+                    </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+                        Gemma 27B (Quantized)
+                    </div>
+</div>
+</div>
+<!-- Pane Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- Source Block -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Source (English)</label>
+<button class="text-xs text-primary hover:text-blue-700 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                        </button>
+</div>
+<div class="p-5 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-base leading-relaxed selection:bg-blue-100 dark:selection:bg-blue-900">
+                        The integration of large language models into local environments represents a significant step forward in data security and latency reduction. By processing sensitive information on-device, organizations can maintain strict compliance with data governance policies while leveraging advanced AI capabilities.
+                    </div>
+</div>
+<!-- Arrow Divider -->
+<div class="flex justify-center">
+<div class="bg-slate-100 dark:bg-slate-700 rounded-full p-2 text-slate-400">
+<span class="material-symbols-outlined block">arrow_downward</span>
+</div>
+</div>
+<!-- Target Block -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold text-primary uppercase tracking-wider">Translation (German)</label>
+<div class="flex gap-3">
+<button class="text-xs text-slate-500 hover:text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit</span> Edit
+                            </button>
+<button class="text-xs text-primary hover:text-blue-700 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copy
+                            </button>
+</div>
+</div>
+<div class="p-5 bg-white dark:bg-slate-800 rounded-xl border border-primary/20 shadow-[0_4px_20px_-4px_rgba(0,125,184,0.1)] text-slate-900 dark:text-white text-base leading-relaxed font-medium selection:bg-blue-100 dark:selection:bg-blue-900">
+                        Die Integration großer Sprachmodelle in lokale Umgebungen stellt einen bedeutenden Fortschritt in der Datensicherheit und Latenzreduzierung dar. Durch die Verarbeitung sensibler Informationen direkt auf dem Gerät können Organisationen strenge Richtlinien zur Datenverwaltung einhalten und gleichzeitig fortschrittliche KI-Funktionen nutzen.
+                    </div>
+</div>
+<!-- Technical Metadata Card -->
+<div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Generation Statistics</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="block text-xs text-slate-500 mb-1">Tokens/Sec</span>
+<span class="block text-sm font-mono font-medium text-slate-900 dark:text-white">42.8 t/s</span>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="block text-xs text-slate-500 mb-1">Total Duration</span>
+<span class="block text-sm font-mono font-medium text-slate-900 dark:text-white">1.24s</span>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="block text-xs text-slate-500 mb-1">Temperature</span>
+<span class="block text-sm font-mono font-medium text-slate-900 dark:text-white">0.7</span>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="block text-xs text-slate-500 mb-1">Context Window</span>
+<span class="block text-sm font-mono font-medium text-slate-900 dark:text-white">4096</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pane Footer -->
+<div class="shrink-0 p-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-background-dark text-center">
+<p class="text-xs text-slate-400">
+                    Generated by local Ollama instance. Data remains on device.
+                 </p>
+</div>
+</aside>
+</main>
+<!-- Map/Location Image (Hidden but required by prompt rules if context implies map, here using abstract for visual flair if needed) -->
+<!-- Not strictly needed for this layout, but adding a subtle texture data element for completeness of "distinctive choices" -->
+<div class="fixed bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-400 to-purple-500 opacity-80 z-50"></div>
+</body></html>
