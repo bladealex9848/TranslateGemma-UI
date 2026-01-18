@@ -135,14 +135,34 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
 // User Menu Component for Header
 export function UserMenu() {
     const [showAuthModal, setShowAuthModal] = useState(false);
-    const [user, setUser] = useState(getCurrentUser());
+    const [user, setUser] = useState<any>(null);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        setUser(getCurrentUser());
+
+        // Subscribe to auth changes to update UI automatically
+        const unsubscribe = pb.authStore.onChange((token, model) => {
+            setUser(model);
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     const handleLogout = () => {
         logout();
         setUser(null);
         setMenuOpen(false);
     };
+
+    // Prevent hydration mismatch by rendering a placeholder during SSR
+    if (!mounted) {
+        return <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 animate-pulse"></div>;
+    }
 
     if (!user) {
         return (
