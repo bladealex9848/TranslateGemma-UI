@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { login, register, isAuthenticated, getCurrentUser, logout } from '@/services/pocketbase';
 
