@@ -12,12 +12,12 @@ Este documento detalla una estrategia integral para promocionar TranslateGemma-U
 
 ### Ejemplo de Publicación
 
-**Headline**: **¿La privacidad en la traducción es negociable? Nosotros creemos que no.**
+**Headline**: **¿La privacidad en la traducción es negociable? Yo creo que no.**
 
 **Cuerpo**:
 En un mundo donde cada dato cuenta, enviar documentos sensibles a APIs externas es un riesgo que muchas organizaciones ya no pueden correr.
 
-Presentamos **TranslateGemma-UI**: La interfaz definitiva para los modelos de traducción off-grid de Google DeepMind.
+Presento **TranslateGemma-UI**: La interfaz definitiva para los modelos de traducción off-grid de Google DeepMind.
 
 🚀 **¿Por qué es diferente?**
 *   **100% Local**: Tus datos nunca salen de tu infraestructura (gracias a Ollama).
@@ -25,7 +25,7 @@ Presentamos **TranslateGemma-UI**: La interfaz definitiva para los modelos de tr
 *   **55 Idiomas**: Comunicación global, seguridad local.
 *   **Open Source**: Código transparente y adaptable.
 
-Hemos diseñado una interfaz que prioriza la velocidad y la privacidad sin sacrificar la UX moderna que tus equipos esperan.
+He diseñado una interfaz que prioriza la velocidad y la privacidad sin sacrificar la UX moderna que esperas.
 
 👇 **Descubre el proyecto en GitHub y despliega tu propio servidor de traducción hoy mismo.**
 [Link al repositorio]
@@ -48,10 +48,10 @@ Hemos diseñado una interfaz que prioriza la velocidad y la privacidad sin sacri
 
 🧵 **1/5**
 ¿Cansado de pagar por APIs de traducción que leen tus datos? 🛑
-Acabamos de lanzar TranslateGemma-UI: La potencia de los nuevos modelos de Google, corriendo totalmente en tu máquina.
+Acabo de lanzar TranslateGemma-UI: La potencia de los nuevos modelos de Google, corriendo totalmente en tu máquina.
 
 **2/5**
-💡 **La magia**: Combinamos la eficiencia de Ollama con una UI moderna en React.
+💡 **La magia**: Combino la eficiencia de Ollama con una UI moderna en React.
 Resultado: Traducción de 55 idiomas con 0 latencia de red y 100% privacidad.
 
 **3/5**
@@ -115,7 +115,7 @@ Link en bio para probar la demo. ⚡️
 🚀 **¡Nueva Versión Disponible: v1.2.0!**
 
 Hola comunidad 👋,
-Acabamos de liberar una actualización importante para TranslateGemma-UI:
+Acabo de liberar una actualización importante para TranslateGemma-UI:
 
 ✅ **Soporte para Gemma 27B**: Mayor precisión para documentos legales.
 ✅ **Modo Oscuro Real**: Para esas sesiones de coding nocturnas.
@@ -123,7 +123,7 @@ Acabamos de liberar una actualización importante para TranslateGemma-UI:
 
 Descarga la actualización aquí: [Link]
 
-¿Preguntas? Estamos en línea en el chat general. ¡Gracias por contribuir!
+¿Preguntas? Estoy en línea en el chat general. ¡Gracias por contribuir!
 
 **Activo Visual**: `whatsapp_translategemma_community.png`
 
