@@ -20,14 +20,13 @@ export interface User {
 
 export interface Translation {
     id: string;
-    user: string;
+    user_id: string;
     source_lang: string;
     target_lang: string;
     original_text: string;
     translated_text: string;
     model_used?: string;
     is_favorite: boolean;
-    tags?: string[];
     created: string;
     updated: string;
 }
@@ -93,7 +92,7 @@ export async function saveTranslation(
     }
 
     const translation = await pb.collection('translations').create({
-        user: getCurrentUser()?.id,
+        user_id: getCurrentUser()?.id,
         source_lang: sourceLang,
         target_lang: targetLang,
         original_text: originalText,
@@ -117,7 +116,7 @@ export async function getTranslationHistory(
     }
 
     const result = await pb.collection('translations').getList(page, perPage, {
-        filter: `user = "${getCurrentUser()?.id}"`,
+        filter: `user_id = "${getCurrentUser()?.id}"`,
         sort: '-created',
     });
 
