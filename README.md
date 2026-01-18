@@ -76,24 +76,43 @@ Gestiona tus modelos LLM locales fácilmente.
 
 ### Prerrequisitos
 
-1.  tener **[Ollama](https://ollama.com/)** instalado.
+1.  Tener **[Ollama](https://ollama.com/)** instalado (o Docker).
 2.  Tener al menos 8GB de RAM (para el modelo 4B/12B).
+3.  Node.js >= 20 (para desarrollo).
 
-### Instalación
+### Instalación con Docker (Recomendado)
 
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/bladealex9848/TranslateGemma-UI.git
 cd TranslateGemma-UI
 
-# 2. Descargar el modelo base (Ollama)
-ollama pull translategemma:12b
+# 2. Iniciar todos los servicios (Frontend + Ollama + PocketBase)
+docker compose up -d
 
-# 3. Configurar entorno
-cp .env.example .env
+# 3. Descargar el modelo de traducción (Esperar a que Ollama inicie)
+docker exec -it translategemma-ui-ollama-1 ollama pull translategemma:latest
 
-# 4. Iniciar (Instrucción temporal hasta definir stack frontend)
-echo "El servidor de desarrollo iniciará pronto..."
+# 4. Acceder a la aplicación
+open http://localhost:3000
+```
+
+### Desarrollo Local
+
+```bash
+# 1. Clonar e instalar dependencias
+git clone https://github.com/bladealex9848/TranslateGemma-UI.git
+cd TranslateGemma-UI/frontend
+npm install
+
+# 2. Configurar entorno
+cp .env.local.example .env.local
+# Editar .env.local con tus URLs de Ollama y PocketBase
+
+# 3. Iniciar servidor de desarrollo
+npm run dev
+
+# 4. Abrir http://localhost:3000
 ```
 
 ---
@@ -106,16 +125,22 @@ Todo lo que necesitas saber sobre los modelos y la integración:
 *   🗣️ **[Lista de Idiomas](./docs/translategemma/LANGUAGES.md)**: Todos los códigos ISO soportados.
 *   🤖 **[Guía de Prompts](./docs/translategemma/PROMPT_GUIDE.md)**: Cómo hablar con el modelo vía API.
 *   📱 **[Análisis de Diseño UI](./docs/UI_DESIGN_COMPLIANCE_ANALYSIS.md)**: Desglose completo de la interfaz.
+*   🗺️ **[Roadmap de Implementación](./docs/IMPLEMENTATION_ROADMAP.md)**: Estado actual del desarrollo.
 
 ---
 
 ## 🛠️ Arquitectura
 
-El proyecto utiliza una arquitectura desacoplada para máxima flexibilidad:
+El proyecto utiliza una arquitectura moderna y desacoplada:
 
-*   **Core AI**: [Ollama](https://ollama.com/) (Inferencia local).
-*   **Modelos**: TranslateGemma (pesos abiertos por Google DeepMind).
-*   **Interfaz**: (Planificado: React/Next.js).
+| Capa | Tecnología | Versión |
+| :--- | :--- | :--- |
+| **Frontend** | Next.js + React + TypeScript | 16.x / 19.x |
+| **Styling** | Tailwind CSS | 4.x |
+| **State** | Zustand | 5.x |
+| **Backend/Auth** | PocketBase | 0.24+ |
+| **LLM Runtime** | Ollama | Latest |
+| **Modelos** | TranslateGemma (Google DeepMind) | 4B/12B/27B |
 
 ---
 

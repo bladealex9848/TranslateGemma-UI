@@ -96,9 +96,9 @@ Basado en mockups de `docs/stitch_translategemma_ui/`.
 ---
 
 ### Fase 6: Deployment
-- [ ] Crear Dockerfile para frontend (Next.js standalone)
-- [ ] Crear `docker-compose.yml` (Frontend + PocketBase + Ollama)
-- [ ] Configurar variables de entorno de producción
+- [x] Crear Dockerfile para frontend (Next.js standalone)
+- [x] Crear `docker-compose.yml` (Frontend + PocketBase + Ollama)
+- [x] Configurar variables de entorno de producción
 - [ ] Documentar proceso de despliegue en README.md
 - [ ] Desplegar en VPS (`translate.alexanderoviedofadul.dev`)
 - [ ] Configurar HTTPS (Nginx + Certbot o Caddy)
