@@ -24,10 +24,10 @@ Este documento es el **tracker** oficial para el desarrollo de TranslateGemma-UI
 ## Fases de Implementación
 
 ### Fase 0: Preparación del Entorno
-- [ ] Verificar versiones de Node.js (>=20.x) y Python (>=3.11)
-- [ ] Inicializar proyecto Next.js 16 con TypeScript
-- [ ] Configurar ESLint + Prettier
-- [ ] Configurar estructura de carpetas según `docs/prompts/ARCHITECTURE_PROMPT.md`
+- [x] Verificar versiones de Node.js (>=20.x) y Python (>=3.11)
+- [x] Inicializar proyecto Next.js 16 con TypeScript
+- [x] Configurar ESLint + Prettier
+- [x] Configurar estructura de carpetas según `docs/prompts/ARCHITECTURE_PROMPT.md`
 - [ ] Descargar y configurar PocketBase localmente
 - [ ] Crear colecciones base en PocketBase (users, translations)
 
