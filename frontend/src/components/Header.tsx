@@ -46,7 +46,8 @@ export default function Header() {
                 <div className="flex items-center gap-4">
                     <button
                         onClick={toggleSidebar}
-                        className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                        title="Historial"
                     >
                         <Bars3Icon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
                     </button>
