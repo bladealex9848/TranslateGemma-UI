@@ -105,7 +105,7 @@ TOKEN=$(curl -s -X POST http://localhost:8090/api/collections/_superusers/auth-w
 curl -s -X POST "http://localhost:8090/api/collections" \
   -H "Authorization: $TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"name":"translations","type":"base","fields":[{"name":"source_lang","type":"text","required":true},{"name":"target_lang","type":"text","required":true},{"name":"original_text","type":"text","required":true},{"name":"translated_text","type":"text","required":true},{"name":"model_used","type":"text"},{"name":"is_favorite","type":"bool"},{"name":"user_id","type":"text","required":true}],"listRule":"","viewRule":"","createRule":"","updateRule":"","deleteRule":""}'
+  -d '{"name":"translations","type":"base","fields":[{"name":"source_lang","type":"text","required":true},{"name":"target_lang","type":"text","required":true},{"name":"original_text","type":"text","required":true},{"name":"translated_text","type":"text","required":true},{"name":"model_used","type":"text"},{"name":"is_favorite","type":"bool"},{"name":"user_id","type":"text","required":true}],"listRule":"user_id = @request.auth.id","viewRule":"user_id = @request.auth.id","createRule":"@request.auth.id != \"\"","updateRule":"user_id = @request.auth.id","deleteRule":"user_id = @request.auth.id"}'
 ```
 
 ## Verificar Despliegue

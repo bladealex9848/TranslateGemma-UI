@@ -67,11 +67,11 @@ curl -s -X POST "http://127.0.0.1:8090/api/collections" \
       {"name": "is_favorite", "type": "bool"},
       {"name": "user_id", "type": "text", "required": true}
     ],
-    "listRule": "",
-    "viewRule": "",
-    "createRule": "",
-    "updateRule": "",
-    "deleteRule": ""
+    "listRule": "user_id = @request.auth.id",
+    "viewRule": "user_id = @request.auth.id",
+    "createRule": "@request.auth.id != \"\"",
+    "updateRule": "user_id = @request.auth.id",
+    "deleteRule": "user_id = @request.auth.id"
   }'
 ```
 
