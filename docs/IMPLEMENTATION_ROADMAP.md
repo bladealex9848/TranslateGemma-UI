@@ -36,17 +36,17 @@ Este documento es el **tracker** oficial para el desarrollo de TranslateGemma-UI
 ### Fase 1: Scaffold UI (Sin Lógica)
 Basado en mockups de `docs/stitch_translategemma_ui/`.
 
-- [ ] Implementar layout principal (Header, Main Content, Footer)
-- [ ] Componente: `TranslationInput` (área de texto origen)
-- [ ] Componente: `TranslationOutput` (área de texto destino)
-- [ ] Componente: `LanguageSelector` (dropdown con 55 idiomas)
-- [ ] Componente: `SwapLanguagesButton`
-- [ ] Componente: `ModelSelector` (4B/12B/27B toggle)
+- [x] Implementar layout principal (Header, Main Content, Footer)
+- [x] Componente: `TranslationInput` (área de texto origen)
+- [x] Componente: `TranslationOutput` (área de texto destino)
+- [x] Componente: `LanguageSelector` (dropdown con 55 idiomas)
+- [x] Componente: `SwapLanguagesButton`
+- [x] Componente: `ModelSelector` (4B/12B/27B toggle)
 - [ ] Componente: `TranslationHistory` (sidebar colapsable)
 - [ ] Componente: `SettingsModal`
-- [ ] Componente: `OllamaStatusIndicator`
-- [ ] Implementar responsive para tablet y móvil
-- [ ] Implementar dark mode toggle
+- [x] Componente: `OllamaStatusIndicator`
+- [x] Implementar responsive para tablet y móvil
+- [x] Implementar dark mode toggle
 
 ---
 
