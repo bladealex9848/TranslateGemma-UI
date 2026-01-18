@@ -63,7 +63,7 @@ Sorprendentemente rápido y capaz, pero no está afinado específicamente para t
 Se ha actualizado el archivo `.env` del proyecto con estos valores óptimos:
 
 ```env
-OLLAMA_HOST=https://ollama.alexanderoviedofadul.dev/
+OLLAMA_HOST=http://localhost:11434
 OLLAMA_MODEL=translategemma:latest
 OLLAMA_TIMEOUT=60  # Reducido de 120s debido a la alta velocidad detectada
 ```
