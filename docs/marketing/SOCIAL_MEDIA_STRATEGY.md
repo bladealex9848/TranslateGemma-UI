@@ -28,7 +28,7 @@ Presento **TranslateGemma-UI**: La interfaz definitiva para los modelos de tradu
 He diseñado una interfaz que prioriza la velocidad y la privacidad sin sacrificar la UX moderna que esperas.
 
 👇 **Descubre el proyecto en GitHub y despliega tu propio servidor de traducción hoy mismo.**
-[Link al repositorio]
+[https://translate.alexanderoviedofadul.dev](https://translate.alexanderoviedofadul.dev)
 
 #OpenSource #AI #Privacy #DeepMind #Ollama #TranslateGemma #EnterpriseTech
 
@@ -151,7 +151,7 @@ Olvídate de subir tus contratos o cartas personales a la nube. Con **TranslateG
 Perfecto para estudiantes, abogados y cualquiera que valore su privacidad.
 ¡Etiqueta a ese amigo que siempre está aprendiendo idiomas! 📚
 
-[Link al proyecto]
+[https://translate.alexanderoviedofadul.dev](https://translate.alexanderoviedofadul.dev)
 
 **Activo Visual**: Video demostrativo corto o carrusel de imágenes explicando "Cómo funciona".
 
