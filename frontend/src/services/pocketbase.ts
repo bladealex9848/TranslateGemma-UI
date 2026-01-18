@@ -117,7 +117,7 @@ export async function getTranslationHistory(
 
     const result = await pb.collection('translations').getList(page, perPage, {
         filter: `user_id = "${getCurrentUser()?.id}"`,
-        sort: '-created',
+        sort: '-id',
     });
 
     return {
