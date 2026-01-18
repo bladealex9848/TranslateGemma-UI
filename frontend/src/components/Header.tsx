@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Cog6ToothIcon, MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { useAppStore } from '@/stores/appStore';
 import { checkOllamaStatus } from '@/services/ollama';
+import { UserMenu } from './AuthModal';
 
 export default function Header() {
     const { theme, setTheme, ollamaConnected, setOllamaConnected, toggleSidebar } = useAppStore();
@@ -85,6 +86,9 @@ export default function Header() {
                             <MoonIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
                         )}
                     </button>
+
+                    {/* User Menu */}
+                    <UserMenu />
 
                     {/* Settings */}
                     <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">

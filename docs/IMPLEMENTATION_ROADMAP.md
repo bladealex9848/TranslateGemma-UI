@@ -62,15 +62,15 @@ Basado en mockups de `docs/stitch_translategemma_ui/`.
 ---
 
 ### Fase 3: Integración con PocketBase
-- [ ] Configurar SDK de PocketBase en frontend
-- [ ] Implementar flujo de registro de usuario
-- [ ] Implementar flujo de login (email/password)
-- [ ] Implementar logout y manejo de sesión
-- [ ] Crear reglas de API para colección `translations`
-- [ ] Guardar traducciones en historial (usuario logueado)
-- [ ] Cargar historial del usuario al iniciar
+- [x] Configurar SDK de PocketBase en frontend
+- [x] Implementar flujo de registro de usuario
+- [x] Implementar flujo de login (email/password)
+- [x] Implementar logout y manejo de sesión
+- [x] Crear reglas de API para colección `translations`
+- [x] Guardar traducciones en historial (usuario logueado)
+- [x] Cargar historial del usuario al iniciar
 - [ ] Implementar búsqueda en historial
-- [ ] Implementar favoritos en traducciones
+- [x] Implementar favoritos en traducciones
 - [ ] Sincronizar estado local con PocketBase
 
 ---
