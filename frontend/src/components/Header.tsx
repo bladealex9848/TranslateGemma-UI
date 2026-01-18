@@ -36,7 +36,12 @@ export default function Header() {
     }, [theme, mounted]);
 
     const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+        if (theme === 'system') {
+            const systemIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(systemIsDark ? 'light' : 'dark');
+        } else {
+            setTheme(theme === 'dark' ? 'light' : 'dark');
+        }
     };
 
     return (
@@ -66,12 +71,12 @@ export default function Header() {
                 {/* Right: Status & Actions */}
                 <div className="flex items-center gap-3">
                     {/* Ollama Status */}
+                    {/* Ollama Status */}
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
                         <div
-                            className={`w-2 h-2 rounded-full ${ollamaConnected ? 'bg-green-500' : 'bg-red-500'
-                                }`}
+                            className={`w-2 h-2 rounded-full ${ollamaConnected ? 'bg-green-500' : 'bg-red-500'}`}
                         />
-                        <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
+                        <span className="text-xs font-medium text-gray-600 dark:text-gray-300 hidden sm:inline">
                             {ollamaConnected ? 'Ollama OK' : 'Desconectado'}
                         </span>
                     </div>

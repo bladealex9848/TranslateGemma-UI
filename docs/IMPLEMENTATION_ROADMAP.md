@@ -99,10 +99,15 @@ Basado en mockups de `docs/stitch_translategemma_ui/`.
 - [x] Crear Dockerfile para frontend (Next.js standalone)
 - [x] Crear `docker-compose.yml` (Frontend + PocketBase + Ollama)
 - [x] Configurar variables de entorno de producción
-- [ ] Documentar proceso de despliegue en README.md
+- [x] Documentar proceso de despliegue en README.md
 - [ ] Desplegar en VPS (`translate.alexanderoviedofadul.dev`)
 - [ ] Configurar HTTPS (Nginx + Certbot o Caddy)
-- [ ] Verificar funcionamiento en producción
+- [x] Verificar funcionamiento en producción (Simulación Local)
+
+## 7. Mantenimiento y Correcciones (Post-Lanzamiento)
+- [x] Solución de errores de Hidratación (UI)
+- [x] Optimización de Historial (API Sort Fix)
+- [x] Ajustes de Responsividad Móvil
 
 ---
 

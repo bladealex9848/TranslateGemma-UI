@@ -46,6 +46,12 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 - docker-compose.yml with Frontend + Ollama + PocketBase services
 - Environment configuration for development and production
 
+### Fixes
+- **API**: Resolved sorting issue in history API (changed from `-created` to `-id`).
+- **UI**: Fixed hydration error in `TranslationHistory` (nested buttons).
+- **Mobile**: Improved responsiveness for Auth Modal and Header.
+- **Theme**: Fixed Theme Toggle logic for system preference.
+
 ## [0.1.0] - 2026-01-18
 
 ### Added
