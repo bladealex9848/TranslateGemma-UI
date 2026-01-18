@@ -76,13 +76,13 @@ Basado en mockups de `docs/stitch_translategemma_ui/`.
 ---
 
 ### Fase 4: Funcionalidades Avanzadas
-- [ ] Traducción de imágenes (multimodal) - upload + base64
-- [ ] Copiar traducción al portapapeles
+- [x] Traducción de imágenes (multimodal) - upload + base64
+- [x] Copiar traducción al portapapeles
 - [ ] Exportar historial como JSON/CSV
 - [ ] Detección automática de idioma (heurística o LLM)
-- [ ] Contador de tokens/caracteres de entrada
-- [ ] Atajos de teclado (Ctrl+Enter para traducir)
-- [ ] PWA: Manifest + Service Worker básico
+- [x] Contador de tokens/caracteres de entrada
+- [x] Atajos de teclado (Ctrl+Enter para traducir)
+- [x] PWA: Manifest + Service Worker básico
 
 ---
 

@@ -1,11 +1,14 @@
 import Header from '@/components/Header';
 import TranslationPanel from '@/components/TranslationPanel';
 import ModelSelector from '@/components/ModelSelector';
+import ImageTranslation from '@/components/ImageTranslation';
+import TranslationHistory from '@/components/TranslationHistory';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
       <Header />
+      <TranslationHistory />
 
       <main className="py-8">
         {/* Hero Section */}
@@ -21,9 +24,10 @@ export default function Home() {
         {/* Translation Panel */}
         <TranslationPanel />
 
-        {/* Model Selector (Collapsible on Mobile) */}
-        <div className="max-w-7xl mx-auto px-4 mt-8">
-          <details className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4">
+        {/* Advanced Features */}
+        <div className="max-w-7xl mx-auto px-4 mt-8 grid gap-4 lg:grid-cols-2">
+          {/* Model Selector */}
+          <details className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4" open>
             <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
               ⚙️ Configuración de Modelo
             </summary>
@@ -31,6 +35,9 @@ export default function Home() {
               <ModelSelector />
             </div>
           </details>
+
+          {/* Image Translation */}
+          <ImageTranslation />
         </div>
       </main>
 
