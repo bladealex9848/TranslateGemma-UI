@@ -1,6 +1,6 @@
 # Análisis de Rendimiento: Servidor Ollama Personalizado
 
-Este documento detalla los resultados de las pruebas de rendimiento realizadas contra el servidor `https://ollama.alexanderoviedofadul.dev/` para determinar la configuración óptima de TranslateGemma-UI.
+Este documento detalla los resultados de las pruebas de rendimiento realizadas contra un **servidor Ollama personalizado** para determinar la configuración óptima de TranslateGemma-UI.
 
 **Fecha**: 18 de Enero, 2026
 **Ubicación de Prueba**: Remota
@@ -72,4 +72,4 @@ OLLAMA_TIMEOUT=60  # Reducido de 120s debido a la alta velocidad detectada
 
 ## 5. Conclusiones
 
-El servidor `ollama.alexanderoviedofadul.dev` está **perfectamente capacitado** para soportar el tráfico de TranslateGemma-UI. La latencia de red es mínima y el tiempo de inferencia es competitivo con APIs comerciales.
+El servidor personalizado está **perfectamente capacitado** para soportar el tráfico de TranslateGemma-UI. La latencia de red es mínima y el tiempo de inferencia es competitivo con APIs comerciales.

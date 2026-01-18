@@ -3,7 +3,11 @@ import requests
 import json
 import statistics
 
-OLLAMA_HOST = "https://ollama.alexanderoviedofadul.dev"
+import os
+
+# Default to localhost, or use env var. 
+# WARNING: Do not hardcode private servers here.
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
 def get_models():
     try:
