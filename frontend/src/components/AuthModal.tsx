@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { login, register, isAuthenticated, getCurrentUser, logout, pb } from '@/services/pocketbase';
 
@@ -18,7 +19,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    if (!isOpen) return null;
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!isOpen || !mounted) return null;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
