@@ -51,13 +51,13 @@ Basado en mockups de `docs/stitch_translategemma_ui/`.
 ---
 
 ### Fase 2: Integración con Ollama
-- [ ] Crear servicio `src/services/ollama.ts` para comunicación con API
-- [ ] Implementar función `translate()` con prompt oficial
-- [ ] Implementar streaming de respuesta (SSE)
-- [ ] Manejo de errores (conexión, timeout, modelo no encontrado)
-- [ ] Indicador de carga (spinner/skeleton)
-- [ ] Listar modelos disponibles desde `/api/tags`
-- [ ] Verificar estado de conexión a Ollama
+- [x] Crear servicio `src/services/ollama.ts` para comunicación con API
+- [x] Implementar función `translate()` con prompt oficial
+- [x] Implementar streaming de respuesta (SSE)
+- [x] Manejo de errores (conexión, timeout, modelo no encontrado)
+- [x] Indicador de carga (spinner/skeleton)
+- [x] Listar modelos disponibles desde `/api/tags`
+- [x] Verificar estado de conexión a Ollama
 
 ---
 
