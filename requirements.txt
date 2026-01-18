@@ -1,0 +1,20 @@
+# TranslateGemma-UI Python Dependencies
+
+# Ollama Python client
+ollama>=0.4.0
+
+# HTTP client (alternative for custom implementations)
+httpx>=0.27.0
+requests>=2.31.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Optional: FastAPI backend
+# fastapi>=0.109.0
+# uvicorn>=0.27.0
+# python-multipart>=0.0.9
+
+# Optional: Testing
+# pytest>=8.0.0
+# pytest-asyncio>=0.23.0
