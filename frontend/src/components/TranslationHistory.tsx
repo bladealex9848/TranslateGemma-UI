@@ -102,10 +102,18 @@ export default function TranslationHistory() {
                     ) : (
                         <div className="divide-y divide-gray-200 dark:divide-gray-700">
                             {history.map((item) => (
-                                <button
+                                <div
                                     key={item.id}
+                                    role="button"
+                                    tabIndex={0}
                                     onClick={() => handleLoadTranslation(item)}
-                                    className="w-full text-left p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group"
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handleLoadTranslation(item);
+                                        }
+                                    }}
+                                    className="w-full text-left p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group cursor-pointer"
                                 >
                                     <div className="flex items-start justify-between gap-2">
                                         <div className="flex-1 min-w-0">
@@ -131,7 +139,7 @@ export default function TranslationHistory() {
                                             </button>
                                         </div>
                                     </div>
-                                </button>
+                                </div>
                             ))}
                         </div>
                     )}
