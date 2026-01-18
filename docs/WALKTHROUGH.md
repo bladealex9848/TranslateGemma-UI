@@ -37,7 +37,13 @@ Componentes creados basados en mockups de `docs/stitch_translategemma_ui/`:
 - `services/pocketbase.ts` - Auth y CRUD de traducciones
 - `AuthModal.tsx` - Login y registro
 - `UserMenu.tsx` - Menú de usuario en header
+### ✅ Fase 3: Integración PocketBase
+- `services/pocketbase.ts` - Auth y CRUD de traducciones
+- `AuthModal.tsx` - Login y registro
+- `UserMenu.tsx` - Menú de usuario en header
 - `TranslationHistory.tsx` - Sidebar con historial y favoritos
+
+![Historial Poblado](./images/history_populated.png)
 
 ### ✅ Fase 4: Funcionalidades Avanzadas
 - `ImageTranslation.tsx` - Traducción multimodal (imágenes)
@@ -77,6 +83,8 @@ Componentes creados basados en mockups de `docs/stitch_translategemma_ui/`:
    - **Problema**: Alineación superior y desbordamiento.
    - **Solución**: Se aplicó `min-h-screen` al contenedor flex para forzar el centrado vertical perfecto.
    - **Prueba**: Screenshot móvil confirma centrado exacto.
+   
+   ![Modal Centrado en Móvil](./images/auth_modal_mobile.png)
 2. **Header Responsivo**:
    - **Problema**: Botón de login desbordaba en móvil y texto "Ollama OK" ocupaba espacio.
    - **Solución**: Botón de login ahora es sólo ícono en móvil (`sm:hidden`). Texto de estado oculto en móvil.

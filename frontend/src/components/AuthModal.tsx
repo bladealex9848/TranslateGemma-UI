@@ -48,8 +48,8 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
         }
     };
 
-    return (
-        <div className="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    return createPortal(
+        <div className="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={onClose} />
 
             <div className="flex min-h-screen items-center justify-center p-4 text-center sm:p-0">
@@ -140,7 +140,8 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
 
