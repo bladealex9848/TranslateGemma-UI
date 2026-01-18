@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { login, register, isAuthenticated, getCurrentUser, logout } from '@/services/pocketbase';
+import { login, register, isAuthenticated, getCurrentUser, logout, pb } from '@/services/pocketbase';
 
 interface AuthModalProps {
     isOpen: boolean;
