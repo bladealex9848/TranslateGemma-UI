@@ -8,6 +8,23 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Added
+- **Alianza "Continuar con Cédula 360"** + capa admin (2026-05-16)
+  - Route Handlers Next.js `app/api/auth/cedula360`, `/challenge`, `/verify`
+    que validan server-to-server contra la API REAL de Cédula 360
+    (`:3081`, override `CEDULA360_API_BASE`; nunca el stub `:9091`).
+  - Reenvío de IP real del usuario (`X-Forwarded-For`/`X-Real-IP`) para
+    no compartir el bucket de rate-limit (10/min) de Cédula 360.
+  - Token de sesión emitido vía PocketBase **impersonate** (superusuario);
+    upsert de `users` con rol normal `viewer`, sin escalar roles, sin
+    guardar la contraseña de Cédula 360.
+  - reCAPTCHA v3 (claves Cédula 360, umbral 0.3, fail-open).
+  - Botón "Continuar con Cédula 360" + 2FA inline en `AuthModal`.
+  - Panel `/admin` mínimo con RBAC (viewer vs admin), Mi perfil y
+    listado de usuarios. Campo `role` añadido a la colección `users`.
+  - Dominio primario migrado a `translate.cedula360.tech`
+    (`translate.alexanderoviedofadul.dev` → 301). Footer/landing con
+    badge "en alianza con Cédula 360" y contacto `info@cedula360.tech`.
+  - Doc: `docs/ALIANZA-CEDULA360-2026-05-16.md`.
 - Documentación inicial de TranslateGemma
   - README.md con descripción y uso básico
   - MODELS.md con detalles de los modelos 4B, 12B, 27B

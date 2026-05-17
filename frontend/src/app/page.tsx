@@ -61,6 +61,28 @@ export default function Home() {
             Documentación
           </a>
         </p>
+        <p className="mt-2 flex items-center justify-center gap-1.5 text-xs">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 font-medium">
+            En alianza con{' '}
+            <a
+              href="https://cedula360.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Cédula 360
+            </a>
+          </span>
+        </p>
+        <p className="mt-1 text-xs">
+          Contacto:{' '}
+          <a
+            href="mailto:info@cedula360.tech"
+            className="hover:text-blue-500 transition-colors"
+          >
+            info@cedula360.tech
+          </a>
+        </p>
       </footer>
     </div>
   );

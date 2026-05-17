@@ -8,15 +8,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://translate.cedula360.tech'),
   title: 'TranslateGemma UI - Traducción Privada con IA',
   description:
-    'Interfaz moderna para traducción multilingüe con TranslateGemma de Google, ejecutándose 100% localmente con Ollama.',
-  keywords: ['traducción', 'IA', 'TranslateGemma', 'Ollama', 'privacidad', 'local'],
+    'Interfaz moderna para traducción multilingüe con TranslateGemma de Google, ejecutándose 100% localmente con Ollama. En alianza con Cédula 360.',
+  keywords: ['traducción', 'IA', 'TranslateGemma', 'Ollama', 'privacidad', 'local', 'Cédula 360'],
   authors: [{ name: 'Alexander Oviedo Fadul' }],
   openGraph: {
     title: 'TranslateGemma UI',
-    description: 'Traducción privada con IA - 55 idiomas, 100% local',
+    description: 'Traducción privada con IA - 55 idiomas, 100% local. En alianza con Cédula 360.',
     type: 'website',
+    url: 'https://translate.cedula360.tech',
   },
 };
 
