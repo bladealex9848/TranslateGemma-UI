@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Cog6ToothIcon, MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import { MoonIcon, SunIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { useAppStore } from '@/stores/appStore';
 import { checkOllamaStatus } from '@/services/ollama';
 import { UserMenu } from './AuthModal';
@@ -46,37 +46,41 @@ export default function Header() {
 
     return (
         <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40">
-            <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 h-16 flex items-center justify-between gap-2">
                 {/* Left: Logo & Menu */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                     <button
                         onClick={toggleSidebar}
-                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg shrink-0"
                         title="Historial"
+                        aria-label="Historial"
                     >
                         <Bars3Icon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
                     </button>
 
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <a href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shrink-0">
                             <span className="text-white font-bold text-lg">T</span>
                         </div>
-                        <div>
-                            <h1 className="font-bold text-gray-900 dark:text-white">TranslateGemma</h1>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Traducción privada con IA</p>
+                        <div className="hidden sm:block min-w-0">
+                            <h1 className="font-bold text-gray-900 dark:text-white truncate">
+                                TranslateGemma
+                            </h1>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                Traducción privada con IA
+                            </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 {/* Right: Status & Actions */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
                     {/* Ollama Status */}
-                    {/* Ollama Status */}
-                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+                    <div className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
                         <div
                             className={`w-2 h-2 rounded-full ${ollamaConnected ? 'bg-green-500' : 'bg-red-500'}`}
                         />
-                        <span className="text-xs font-medium text-gray-600 dark:text-gray-300 hidden sm:inline">
+                        <span className="text-xs font-medium text-gray-600 dark:text-gray-300 hidden md:inline">
                             {ollamaConnected ? 'Ollama OK' : 'Desconectado'}
                         </span>
                     </div>
@@ -84,6 +88,7 @@ export default function Header() {
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
+                        aria-label="Cambiar tema"
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                     >
                         {mounted && theme === 'dark' ? (
@@ -95,11 +100,6 @@ export default function Header() {
 
                     {/* User Menu */}
                     <UserMenu />
-
-                    {/* Settings */}
-                    <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-                        <Cog6ToothIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
-                    </button>
                 </div>
             </div>
         </header>

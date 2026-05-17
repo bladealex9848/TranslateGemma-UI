@@ -520,12 +520,12 @@ export function UserMenu() {
         setMenuOpen(false);
     };
 
-    // Prevent hydration mismatch by rendering a placeholder during SSR
-    if (!mounted) {
-        return <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 animate-pulse"></div>;
-    }
-
-    if (!user) {
+    // El botón "Iniciar Sesión" (estado deslogueado) NO diverge entre
+    // SSR y cliente, así que lo renderizamos siempre — evita que el
+    // CTA quede atascado en un placeholder si la hidratación es lenta.
+    // Sólo el estado logueado (avatar/menú, datos del usuario) espera a
+    // `mounted` para no provocar mismatch de hidratación.
+    if (!mounted || !user) {
         return (
             <>
                 <button

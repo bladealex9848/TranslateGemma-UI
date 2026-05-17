@@ -1,7 +1,13 @@
 // PocketBase client configuration
 import PocketBase from 'pocketbase';
 
-const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
+// El SDK corre en el navegador. Usamos un proxy same-origin (/pbproxy)
+// servido por Next.js → PocketBase interno (sin tocar Caddy/DNS). En
+// SSR/Node usamos la URL interna directa. Override con
+// NEXT_PUBLIC_POCKETBASE_URL si se desea forzar.
+const POCKETBASE_URL =
+    process.env.NEXT_PUBLIC_POCKETBASE_URL ||
+    (typeof window === 'undefined' ? 'http://127.0.0.1:8094' : '/pbproxy');
 
 export const pb = new PocketBase(POCKETBASE_URL);
 

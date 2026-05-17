@@ -11,7 +11,8 @@ export default function ImageTranslation() {
     const [isProcessing, setIsProcessing] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const OLLAMA_HOST = process.env.NEXT_PUBLIC_OLLAMA_HOST || 'http://localhost:11434';
+    // Proxy same-origin (Next.js → Ollama). Evita mixed-content.
+    const OLLAMA_HOST = '/ollama';
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];

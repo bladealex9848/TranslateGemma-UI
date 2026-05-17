@@ -1,22 +1,22 @@
 'use client';
 
 /**
- * Panel de administración mínimo de Translate.
+ * Panel de administración de Translate (ruta `/admin`).
  *
  * RBAC:
- *  - Sin sesión → invita a iniciar sesión.
- *  - role !== 'admin'  → vista "Mi perfil" (RBAC viewer).
- *  - role === 'admin'  → además, listado de usuarios (PB) y sesiones.
+ *  - Sin sesión → pantalla de acceso con login (modal: normal /
+ *    registro / "Continuar con Cédula 360" + 2FA inline).
+ *  - role !== 'admin'  → vista "Mi perfil" + aviso de acceso limitado
+ *    (RBAC viewer: navegación restringida).
+ *  - role === 'admin'  → además, listado de usuarios (PB) y sesión.
  *
- * Aditivo: no rompe la herramienta de traducción. La gestión de usuarios
- * usa el SDK de PocketBase con el token del usuario autenticado (las
- * listRules de la colección aplican; el listado completo sólo funciona
- * para superusuarios/admin según reglas de PB — para staff real se
- * delega a PocketBase Admin UI).
+ * Aditivo: no rompe la herramienta de traducción.
  */
 
 import { useEffect, useState } from 'react';
 import { pb, getCurrentUser } from '@/services/pocketbase';
+import AuthModal from '@/components/AuthModal';
+import SiteFooter from '@/components/layout/SiteFooter';
 
 interface PbUser {
     id: string;
@@ -29,9 +29,11 @@ interface PbUser {
 
 export default function AdminPage() {
     const [mounted, setMounted] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [user, setUser] = useState<any>(null);
     const [users, setUsers] = useState<PbUser[]>([]);
     const [usersError, setUsersError] = useState('');
+    const [showAuth, setShowAuth] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -46,7 +48,9 @@ export default function AdminPage() {
         if (!isAdmin) return;
         (async () => {
             try {
-                const res = await pb.collection('users').getList(1, 100, { sort: '-created' });
+                const res = await pb
+                    .collection('users')
+                    .getList(1, 100, { sort: '-created' });
                 setUsers(res.items as unknown as PbUser[]);
             } catch (e) {
                 setUsersError(
@@ -60,137 +64,210 @@ export default function AdminPage() {
 
     if (!mounted) return null;
 
+    // ---------- Sin sesión: pantalla de acceso ----------
     if (!user) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-6">
-                <div className="max-w-md text-center">
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        Panel de administración
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">
-                        Necesitas iniciar sesión para acceder.
-                    </p>
-                    <a
-                        href="/"
-                        className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                    >
-                        Ir al inicio
-                    </a>
+            <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
+                <div className="flex-1 flex items-center justify-center p-6">
+                    <div className="max-w-md w-full text-center bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-800">
+                        <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-5">
+                            <span className="text-white font-bold text-xl">T</span>
+                        </div>
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                            Administración
+                        </h1>
+                        <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm">
+                            Necesitas iniciar sesión para acceder al panel.
+                            Puedes usar tu cuenta o continuar con Cédula 360.
+                        </p>
+                        <button
+                            onClick={() => setShowAuth(true)}
+                            className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all"
+                        >
+                            Iniciar sesión
+                        </button>
+                        <div className="mt-4 flex items-center justify-center gap-4 text-sm">
+                            <a href="/" className="text-gray-500 hover:text-blue-500">
+                                ← Inicio
+                            </a>
+                            <a
+                                href="/traducir"
+                                className="text-blue-600 hover:underline"
+                            >
+                                Ir al traductor
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                <AuthModal
+                    isOpen={showAuth}
+                    onClose={() => setShowAuth(false)}
+                    onAuthSuccess={() => {
+                        setUser(getCurrentUser());
+                        setShowAuth(false);
+                    }}
+                />
+                <SiteFooter />
             </div>
         );
     }
 
+    // ---------- Con sesión ----------
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 p-6">
-            <div className="max-w-4xl mx-auto space-y-6">
-                <div className="flex items-center justify-between">
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        Panel de administración
-                    </h1>
-                    <a href="/" className="text-sm text-blue-600 hover:underline">
-                        ← Volver al traductor
+        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
+            <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
+                <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+                    <a href="/" className="flex items-center gap-2">
+                        <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <span className="text-white font-bold">T</span>
+                        </div>
+                        <span className="font-bold text-gray-900 dark:text-white">
+                            Administración
+                        </span>
                     </a>
+                    <nav className="flex items-center gap-3 text-sm">
+                        <a
+                            href="/"
+                            className="text-gray-500 hover:text-blue-500"
+                        >
+                            Inicio
+                        </a>
+                        <a
+                            href="/traducir"
+                            className="text-blue-600 hover:underline"
+                        >
+                            Traductor →
+                        </a>
+                    </nav>
                 </div>
+            </header>
 
-                {/* Mi perfil */}
-                <section className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
-                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Mi perfil
-                    </h2>
-                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                        <div>
-                            <dt className="text-gray-500">Nombre</dt>
-                            <dd className="text-gray-900 dark:text-white">{user.name || '—'}</dd>
-                        </div>
-                        <div>
-                            <dt className="text-gray-500">Email</dt>
-                            <dd className="text-gray-900 dark:text-white">{user.email}</dd>
-                        </div>
-                        <div>
-                            <dt className="text-gray-500">Rol</dt>
-                            <dd className="text-gray-900 dark:text-white">
-                                {isAdmin ? 'Administrador' : 'Usuario'}
-                            </dd>
-                        </div>
-                        <div>
-                            <dt className="text-gray-500">Sesión activa</dt>
-                            <dd className="text-gray-900 dark:text-white">
-                                {pb.authStore.isValid ? 'Sí' : 'No'}
-                            </dd>
-                        </div>
-                    </dl>
-                </section>
-
-                {/* Usuarios (solo admin) */}
-                {isAdmin ? (
+            <main className="flex-1">
+                <div className="max-w-4xl mx-auto p-6 space-y-6">
+                    {/* Mi perfil */}
                     <section className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
                         <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                            Usuarios ({users.length})
+                            Mi perfil
                         </h2>
-                        {usersError && (
-                            <p className="text-sm text-amber-600 mb-3">{usersError}</p>
-                        )}
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm">
-                                <thead>
-                                    <tr className="text-left text-gray-500 border-b border-gray-200 dark:border-gray-700">
-                                        <th className="py-2 pr-4">Email</th>
-                                        <th className="py-2 pr-4">Nombre</th>
-                                        <th className="py-2 pr-4">Rol</th>
-                                        <th className="py-2 pr-4">Verificado</th>
-                                        <th className="py-2">Creado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {users.map((u) => (
-                                        <tr
-                                            key={u.id}
-                                            className="border-b border-gray-100 dark:border-gray-800"
-                                        >
-                                            <td className="py-2 pr-4 text-gray-900 dark:text-white">
-                                                {u.email}
-                                            </td>
-                                            <td className="py-2 pr-4 text-gray-700 dark:text-gray-300">
-                                                {u.name || '—'}
-                                            </td>
-                                            <td className="py-2 pr-4">
-                                                <span className="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-[11px]">
-                                                    {u.role === 'admin' ? 'admin' : 'viewer'}
-                                                </span>
-                                            </td>
-                                            <td className="py-2 pr-4">
-                                                {u.verified ? '✓' : '—'}
-                                            </td>
-                                            <td className="py-2 text-gray-500">
-                                                {new Date(u.created).toLocaleDateString()}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <p className="mt-4 text-xs text-gray-400">
-                            Gestión avanzada (CRUD completo, roles) vía PocketBase
-                            Admin UI.
-                        </p>
+                        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <dt className="text-gray-500">Nombre</dt>
+                                <dd className="text-gray-900 dark:text-white">
+                                    {user.name || '—'}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="text-gray-500">Email</dt>
+                                <dd className="text-gray-900 dark:text-white">
+                                    {user.email}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="text-gray-500">Rol</dt>
+                                <dd className="text-gray-900 dark:text-white">
+                                    {isAdmin ? 'Administrador' : 'Usuario'}
+                                </dd>
+                            </div>
+                            <div>
+                                <dt className="text-gray-500">Sesión activa</dt>
+                                <dd className="text-gray-900 dark:text-white">
+                                    {pb.authStore.isValid ? 'Sí' : 'No'}
+                                </dd>
+                            </div>
+                        </dl>
+                        <button
+                            onClick={() => {
+                                pb.authStore.clear();
+                                setUser(null);
+                            }}
+                            className="mt-5 px-4 py-2 text-sm text-red-600 border border-red-200 dark:border-red-800 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        >
+                            Cerrar sesión
+                        </button>
                     </section>
-                ) : (
-                    <section className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                            Tienes acceso de <strong>usuario</strong>. La gestión de
-                            usuarios y sesiones está reservada a administradores.
-                        </p>
-                    </section>
-                )}
 
-                <p className="text-center text-[11px] text-gray-400">
-                    TranslateGemma · en alianza con{' '}
-                    <a href="https://cedula360.tech" className="hover:underline">
-                        Cédula 360
-                    </a>
-                </p>
-            </div>
+                    {/* Usuarios (solo admin) */}
+                    {isAdmin ? (
+                        <section className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                                Usuarios ({users.length})
+                            </h2>
+                            {usersError && (
+                                <p className="text-sm text-amber-600 mb-3">
+                                    {usersError}
+                                </p>
+                            )}
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm min-w-[520px]">
+                                    <thead>
+                                        <tr className="text-left text-gray-500 border-b border-gray-200 dark:border-gray-700">
+                                            <th className="py-2 pr-4">Email</th>
+                                            <th className="py-2 pr-4">Nombre</th>
+                                            <th className="py-2 pr-4">Rol</th>
+                                            <th className="py-2 pr-4">Verif.</th>
+                                            <th className="py-2">Creado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {users.map((u) => (
+                                            <tr
+                                                key={u.id}
+                                                className="border-b border-gray-100 dark:border-gray-800"
+                                            >
+                                                <td className="py-2 pr-4 text-gray-900 dark:text-white">
+                                                    {u.email}
+                                                </td>
+                                                <td className="py-2 pr-4 text-gray-700 dark:text-gray-300">
+                                                    {u.name || '—'}
+                                                </td>
+                                                <td className="py-2 pr-4">
+                                                    <span className="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-[11px]">
+                                                        {u.role === 'admin'
+                                                            ? 'admin'
+                                                            : 'viewer'}
+                                                    </span>
+                                                </td>
+                                                <td className="py-2 pr-4">
+                                                    {u.verified ? '✓' : '—'}
+                                                </td>
+                                                <td className="py-2 text-gray-500">
+                                                    {new Date(
+                                                        u.created
+                                                    ).toLocaleDateString()}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p className="mt-4 text-xs text-gray-400">
+                                Gestión avanzada (CRUD completo, roles) vía
+                                PocketBase Admin UI.
+                            </p>
+                        </section>
+                    ) : (
+                        <section className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                Acceso limitado
+                            </h2>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                                Tienes acceso de <strong>usuario</strong>. La
+                                gestión de usuarios y sesiones está reservada a
+                                administradores. Puedes seguir usando el{' '}
+                                <a
+                                    href="/traducir"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    traductor
+                                </a>{' '}
+                                normalmente.
+                            </p>
+                        </section>
+                    )}
+                </div>
+            </main>
+
+            <SiteFooter />
         </div>
     );
 }

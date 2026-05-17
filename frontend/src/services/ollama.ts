@@ -1,7 +1,12 @@
 // Ollama API service for TranslateGemma
-// Connects directly to Ollama server for translation
+// El navegador NO puede hablar directo con Ollama (host privado /
+// mixed-content). Usamos un proxy same-origin (/ollama) servido por
+// Next.js → OLLAMA_HOST server-side. Sin tocar Caddy/DNS.
 
-const OLLAMA_HOST = process.env.NEXT_PUBLIC_OLLAMA_HOST || 'http://localhost:11434';
+const OLLAMA_HOST =
+    typeof window === 'undefined'
+        ? (process.env.OLLAMA_HOST || 'http://127.0.0.1:11434')
+        : '/ollama';
 
 export interface TranslationRequest {
     text: string;

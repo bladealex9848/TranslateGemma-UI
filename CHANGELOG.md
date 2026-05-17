@@ -8,6 +8,31 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Added
+- **Landing pública + proxies same-origin + cableado de secretos** (2026-05-17)
+  - Nueva landing pública en `/` (Tailwind coherente, dark-mode,
+    responsive, accesible) que presenta el proyecto con CTAs claros:
+    "Usar el traductor" → `/traducir`, "Administración" → `/admin`,
+    mención de la alianza Cédula 360 + login (normal + Cédula 360).
+  - Reestructura de rutas: `/` = landing, `/traducir` = herramienta
+    (antes en `/`), `/admin` = panel. Header/footer coherentes en las
+    3 vistas (`MarketingHeader`, `SiteFooter`).
+  - **Proxy same-origin `/ollama/[...path]`**: el navegador ya no llama
+    Ollama directo (mixed-content/host privado); Next.js reenvía a
+    `OLLAMA_HOST` server-side. Whitelist `api/tags|chat|version` (403
+    el resto). Soporta streaming NDJSON.
+  - **Proxy same-origin `/pbproxy/[...path]`**: el SDK PocketBase del
+    navegador apunta a `/pbproxy` (la regla Caddy `/api/pb*` no
+    reescribía el prefijo → 404). Sin tocar Caddy/DNS.
+  - **Fix crítico**: `start.sh` ahora carga `/root/.translate_secrets`
+    en runtime (el servicio systemd sólo cargaba `.env` sin secretos),
+    por lo que la alianza Cédula 360 / impersonate / reCAPTCHA **antes
+    no funcionaban en producción**. El deploy script inlina además
+    `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` en build.
+  - Fix overflow horizontal del header del traductor en móvil (~390px);
+    eliminado botón "Settings" muerto; header con enlace a Inicio.
+  - `/admin` sin sesión ahora ofrece login (modal con Cédula 360 + 2FA)
+    en vez de sólo "Ir al inicio". RBAC viewer/admin intacto.
+  - Doc: `docs/POLISH-VALIDACION-2026-05-17.md`.
 - **Alianza "Continuar con Cédula 360"** + capa admin (2026-05-16)
   - Route Handlers Next.js `app/api/auth/cedula360`, `/challenge`, `/verify`
     que validan server-to-server contra la API REAL de Cédula 360
