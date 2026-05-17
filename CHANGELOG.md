@@ -50,6 +50,21 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
     (`translate.alexanderoviedofadul.dev` → 301). Footer/landing con
     badge "en alianza con Cédula 360" y contacto `info@cedula360.tech`.
   - Doc: `docs/ALIANZA-CEDULA360-2026-05-16.md`.
+
+### Pendientes
+- **Operador**: añadir `translate.cedula360.tech` a los dominios de la
+  llave reCAPTCHA de Cédula 360 en la consola de Google (mitigado por
+  el fail-open `score 0.3`).
+- **Limitación de infra conocida**: la traducción real depende de
+  Ollama local (CPU capada bajo la carga del VPS compartido); la
+  alianza/login/UX operan igual.
+- **Conceder app-admin**: `users.role = admin` en PocketBase (PB
+  superuser); por defecto los usuarios de alianza son `viewer`.
+- **Infra compartida (transversal)**: serializar deploys por webhook /
+  nice-cgroup tras el incidente de carga del VPS (contenido; producción
+  saludable).
+- Detalle accionable en `docs/POLISH-VALIDACION-2026-05-17.md` §6.
+
 - Documentación inicial de TranslateGemma
   - README.md con descripción y uso básico
   - MODELS.md con detalles de los modelos 4B, 12B, 27B

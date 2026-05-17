@@ -139,3 +139,20 @@ a un endpoint cloud-first con capacidad para `translategemma`.
    token del usuario; el CRUD completo sigue delegado a PocketBase
    Admin UI (por diseño). Endurecer reglas de colección si se requiere.
 4. Reglas operativas Caddyfile **no tocadas** (instrucción explícita).
+
+## 6. Pendientes (resumen accionable)
+
+- **Operador — reCAPTCHA**: añadir `translate.cedula360.tech` a los
+  dominios de la llave reCAPTCHA de Cédula 360 en la consola de Google
+  (mitigado mientras tanto por el fail-open `score 0.3`).
+- **Limitación de infra conocida**: la traducción real depende de
+  Ollama local (CPU capada bajo la carga del VPS compartido); la
+  alianza/login/UX sí operan. Resolver saturación de CPU o reapuntar
+  `OLLAMA_HOST` a un endpoint cloud-first con `translategemma`.
+- **Conceder app-admin**: poner `users.role = admin` en PocketBase (vía
+  PocketBase superuser) para el usuario que deba administrar; por
+  defecto los usuarios de alianza entran como `viewer`.
+- **Infra compartida (transversal del ecosistema)**: serializar los
+  deploys por webhook / aplicarles nice-cgroup tras el incidente de
+  carga del VPS por builds sobre-paralelos (contenido; producción
+  saludable).

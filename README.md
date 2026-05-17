@@ -40,6 +40,37 @@ Ideal para:
 
 ---
 
+## 🤝 Alianza Cédula 360
+
+TranslateGemma UI es parte del ecosistema bajo
+`translate.cedula360.tech` (`translate.alexanderoviedofadul.dev` →
+301). Se añadió (aditivo) una **landing pública** en `/`, la
+herramienta en `/traducir`, un **panel `/admin` con RBAC** y el login
+**"Continuar con Cédula 360"**: Route Handlers Next.js que validan
+server-to-server contra la API real de Cédula 360 (`:3081`) + su 2FA,
+con sesión vía PocketBase impersonate (usuario `viewer`, sin escalar
+roles, sin guardar la contraseña aliada) y reCAPTCHA v3 fail-open.
+Detalle en
+[`docs/ALIANZA-CEDULA360-2026-05-16.md`](docs/ALIANZA-CEDULA360-2026-05-16.md)
+y validación/Pendientes en
+[`docs/POLISH-VALIDACION-2026-05-17.md`](docs/POLISH-VALIDACION-2026-05-17.md).
+
+### Pendientes
+
+- **Operador**: añadir `translate.cedula360.tech` a los dominios de la
+  llave reCAPTCHA de Cédula 360 en la consola de Google (mitigado por
+  el fail-open `score 0.3`).
+- **Limitación de infra conocida**: la traducción real depende de
+  Ollama local (CPU capada bajo la carga del VPS compartido); la
+  alianza/login/UX operan igual.
+- **App-admin**: conceder vía PocketBase superuser poniendo
+  `users.role = admin`; por defecto los usuarios de alianza son
+  `viewer`.
+- **Infra compartida**: serializar deploys por webhook / nice-cgroup
+  tras el incidente de carga del VPS (contenido; producción saludable).
+
+---
+
 ## ✨ Características Principales
 
 | Característica | Descripción |
