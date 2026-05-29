@@ -7,6 +7,24 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Fixed
+- **`ChunkLoadError` / CSS y JS como `text/plain` (500) en producción** (2026-05-28)
+  - El navegador en `translate.cedula360.tech` no cargaba: los chunks de
+    `/_next/static/chunks/*.css|*.js` devolvían `500` con MIME `text/plain`
+    y `Uncaught ChunkLoadError`.
+  - **Causa**: desincronización entre el `next-server` en memoria y `.next`
+    en disco. Un `npm run build` manual (17/05 02:28) regeneró `.next` sin
+    reiniciar el servicio (vivo desde 01:37), dejando el server sirviendo un
+    HTML que referenciaba chunks ya sobrescritos/borrados.
+  - **Solución**: `rm -rf .next` + build limpio + `systemctl restart
+    translate-frontend`. Verificado: 8/8 chunks → `200` con MIME correcto en
+    local y vía Caddy.
+  - **Prevención**: el script de deploy del webhook ahora ejecuta `rm -rf .next`
+    antes del build (ya encadenaba `npm run build` + restart).
+  - Docs: [`docs/INCIDENTE-CHUNKLOADERROR-2026-05-28.md`](docs/INCIDENTE-CHUNKLOADERROR-2026-05-28.md),
+    sección 3 de [`docs/TROUBLESHOOTING.md`](docs/TROUBLESHOOTING.md),
+    [`docs/WEBHOOK-DEPLOYMENT.md`](docs/WEBHOOK-DEPLOYMENT.md).
+
 ### Added
 - **Landing pública + proxies same-origin + cableado de secretos** (2026-05-17)
   - Nueva landing pública en `/` (Tailwind coherente, dark-mode,

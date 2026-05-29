@@ -29,9 +29,11 @@ TranslateGemma-UI utiliza **GitHub Webhooks** para despliegues automáticos. Cad
                     ┌───────────────────────────────────────────────────┐
                     │          Pipeline de Deploy                       │
                     │  1. git pull origin main                         │
-                    │  2. cd frontend && npm install --production      │
-                    │  3. npm run build                                │
-                    │  4. systemctl restart translate-frontend         │
+                    │  2. cd frontend && npm install                   │
+                    │  3. cargar secretos (inlina NEXT_PUBLIC_*)       │
+                    │  4. rm -rf .next  (build limpio)                 │
+                    │  5. npm run build                                │
+                    │  6. systemctl restart translate-frontend         │
                     └───────────────────────────┬───────────────────────┘
                                                 │
                                                 ▼
@@ -123,49 +125,57 @@ server.listen(PORT, () => {
 
 ### Archivo: `/root/scripts/webhook-translate-deploy.sh`
 
+> Vive en el VPS (`/root/scripts/`), **no** está versionado en este repo.
+> Resumen de la lógica vigente:
+
 ```bash
 #!/bin/bash
-
 # Webhook para auto-deploy TranslateGemma-UI
-# GitHub webhook endpoint
 
 LOG_FILE="/var/log/translate-deploy.log"
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"; }
 
-# Función de logging
-log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
-}
-
-# Ir al directorio del proyecto
+# 1. git pull
 cd /root/TranslateGemma-UI || exit 1
+git pull origin main >> "$LOG_FILE" 2>&1 || { log "ERROR: Git pull failed"; exit 1; }
 
-# Hacer git pull
-log "INFO: Pulling latest changes..."
-git pull origin main
-
-# Instalar dependencias si package-lock.json cambió
-log "INFO: Installing dependencies..."
+# 2. Dependencias
 cd frontend
-npm install --production
+npm install >> "$LOG_FILE" 2>&1 || { log "ERROR: npm install failed"; exit 1; }
 
-# Reconstruir frontend
-log "INFO: Building frontend..."
-npm run build
+# 3. Secretos: inlinar NEXT_PUBLIC_* (reCAPTCHA site key) en build.
+#    Los secretos server-side se cargan en runtime vía start.sh.
+if [ -f /root/.translate_secrets ]; then
+    set -a; . /root/.translate_secrets; set +a
+    export NEXT_PUBLIC_RECAPTCHA_SITE_KEY="${RECAPTCHA_SITE_KEY:-$NEXT_PUBLIC_RECAPTCHA_SITE_KEY}"
+fi
 
-# Reiniciar servicio
-log "INFO: Restarting service..."
+# 4. Build LIMPIO: rm -rf .next evita chunks huérfanos y la desincronización
+#    server-en-memoria vs disco que provoca ChunkLoadError / CSS 500 si un
+#    build se sobrescribe sin reiniciar el servicio.
+log "INFO: Cleaning previous build (.next)..."
+rm -rf .next
+
+# 5. Build
+npm run build >> "$LOG_FILE" 2>&1 || { log "ERROR: Build failed"; exit 1; }
+
+# 6. Reiniciar servicio (imprescindible para que el next-server cargue el build nuevo)
 systemctl restart translate-frontend
 
-# Verificar que el servicio esté funcionando
+# 7. Verificar
 sleep 5
 if systemctl is-active --quiet translate-frontend; then
     log "SUCCESS: Deploy completed successfully"
-    echo "Status: 200 OK"
 else
-    log "ERROR: Service failed to start"
-    echo "Status: 500 Internal Server Error"
+    log "ERROR: Service failed to start"; exit 1
 fi
 ```
+
+> ⚠️ **Importante**: el paso 6 (`systemctl restart`) es obligatorio. Un
+> `npm run build` sin restart deja el `next-server` en memoria sirviendo
+> chunks de un build anterior ya borrado → `ChunkLoadError` / CSS 500.
+> Ver [`INCIDENTE-CHUNKLOADERROR-2026-05-28.md`](INCIDENTE-CHUNKLOADERROR-2026-05-28.md)
+> y la sección 3 de [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md).
 
 ## Configuración del Frontend Service
 

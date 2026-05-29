@@ -157,6 +157,8 @@ Todo lo que necesitas saber sobre los modelos y la integración:
 *   🤖 **[Guía de Prompts](./docs/translategemma/PROMPT_GUIDE.md)**: Cómo hablar con el modelo vía API.
 *   📱 **[Análisis de Diseño UI](./docs/UI_DESIGN_COMPLIANCE_ANALYSIS.md)**: Desglose completo de la interfaz.
 *   🗺️ **[Roadmap de Implementación](./docs/IMPLEMENTATION_ROADMAP.md)**: Estado actual del desarrollo.
+*   🚀 **[Webhook & Deployment](./docs/WEBHOOK-DEPLOYMENT.md)**: Pipeline de despliegue automático (build limpio + restart).
+*   🩺 **[Troubleshooting](./docs/TROUBLESHOOTING.md)**: Problemas comunes y soluciones (incl. `ChunkLoadError` / CSS 500).
 
 ---
 

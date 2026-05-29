@@ -41,7 +41,44 @@ sort: '-id',
 **Causa**: Uso de `min-h-full` en un contenedor flex que no tenía altura explícita del padre en móviles.
 **Solución**: Usar `min-h-screen` en el contenedor del modal (`AuthModal.tsx`) para asegurar el centrado vertical respecto al viewport.
 
-## 3. Despliegue Docker
+## 3. Producción (systemd + Next.js)
+
+### `ChunkLoadError` / CSS y JS servidos como `text/plain` (500)
+**Síntoma**: En el navegador, los chunks de `/_next/static/chunks/*.css|*.js`
+devuelven `500`, se sirven con MIME `text/plain` y aparece
+`Uncaught ChunkLoadError: Failed to load chunk ...`. La app queda con estilos
+rotos o pantalla en blanco.
+
+**Causa**: Desincronización entre el `next-server` en memoria y el directorio
+`.next` en disco. Ocurre cuando se ejecuta `npm run build` (regenera `.next`)
+**sin reiniciar** `translate-frontend`. El server sigue sirviendo un HTML que
+referencia chunks de un build anterior que ya fue sobrescrito/borrado en disco
+→ Next responde 500 y los entrega como `text/plain`.
+
+**Solución**:
+```bash
+cd /root/TranslateGemma-UI/frontend
+rm -rf .next
+set -a; . /root/.translate_secrets; set +a   # inlinar NEXT_PUBLIC_* (reCAPTCHA)
+NODE_ENV=production npm run build
+systemctl restart translate-frontend
+```
+Luego, en el navegador, **hard refresh** (Ctrl+Shift+R) para descartar el HTML cacheado.
+
+**Diagnóstico rápido** (comparar lo que el server referencia vs. lo que hay en disco):
+```bash
+cd /root/TranslateGemma-UI/frontend
+for f in $(curl -s http://127.0.0.1:3003/ | grep -oE '_next/static/chunks/[a-zA-Z0-9]+\.(js|css)' | sort -u); do
+  d=".next/${f#_next/}"; [ -f "$d" ] && echo "OK $d" || echo "MISS $d"
+done
+```
+
+**Prevención**: nunca correr `npm run build` manual sin `systemctl restart
+translate-frontend` después. El script de deploy del webhook ya encadena
+build + restart y además ejecuta `rm -rf .next` previo (build limpio).
+Detalle completo: [`INCIDENTE-CHUNKLOADERROR-2026-05-28.md`](INCIDENTE-CHUNKLOADERROR-2026-05-28.md).
+
+## 4. Despliegue Docker
 
 ### Error: "connection refused" a Ollama
 **Causa**: El contenedor `frontend` intenta conectar a `localhost:11434`, pero `localhost` dentro del contenedor es el propio contenedor, no el host.
